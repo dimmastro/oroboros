@@ -305,9 +305,12 @@ class ChartCalc(ChartDate):
 					if orb < 0: # we'll never get such a precision
 						continue
 					# check aspect match
-					diff, apply, factor = swe._match_aspect2(
-						lon1, lonsp1, lon2, lonsp2,
-						float(asp._angle), float(orb))
+					# diff, apply, factor = swe._match_aspect2(
+					# 	lon1, lonsp1, lon2, lonsp2,
+					# 	float(asp._angle), float(orb))
+					# TODO create swe._match_aspect2()
+					diff, apply, factor = (0,0,0)
+
 					if diff != None:
 						res.feed(pos1, pos2, asp, diff, apply, factor)
 		self._aspects = res
