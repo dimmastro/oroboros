@@ -343,7 +343,8 @@ class ChartDate(ChartFile):
 		"""
 		# midnight gmt sidtime
 		y, mth, d, h, m, s = self.local_mean_datetime.timetuple()[:6]
-		jd = swe._julday(y, mth, d)
+		# jd = swe._julday(y, mth, d)
+		jd = swe.julday(y, mth, d)
 		midn = swe.sidtime(jd)
 		midn = swe.split_deg(midn, 0)
 		midn = datetime(2000, 1, 1, hour=midn[0], minute=midn[1], second=midn[2],

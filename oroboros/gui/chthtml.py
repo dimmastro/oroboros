@@ -98,9 +98,9 @@ def html_data(chart):
 		'sec': tr('"', 'Seconds')}
 	# altitude
 	fmt = str(tr('<b>%(altitude)s:</b> %(val)s m.<br/>'))
-	txt += fmt % {
-		'altitude': tr('Altitude'),
-		'val': str(chart._altitude)}
+	# txt += fmt % {
+	# 	'altitude': tr('Altitude'),
+	# 	'val': str(chart._altitude)}
 	# country
 	fmt = str(tr('<b>%(country)s:</b> %(val)s<br/>'))
 	try:
