@@ -189,7 +189,8 @@ class PlanetDataList(list):
 		:type reverse: bool
 		:rtype: self
 		"""
-		self.sort(self._sort_by_ranking, reverse=reverse)
+		# self.sort(self._sort_by_ranking, reverse=reverse)
+		# self.sort(key=self._sort_by_ranking, reverse=reverse)
 		return self
 	
 	@staticmethod
