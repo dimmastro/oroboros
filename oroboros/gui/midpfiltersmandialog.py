@@ -30,7 +30,7 @@ class MidPointsFiltersManagerDialog(PyQt5.QtWidgets.QDialog):
 		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# list of filters
-		self.filtersBox = QComboBox(self)
+		self.filtersBox = PyQt5.QtWidgets.QComboBox(self)
 		self.filtersBox.setEditable(False)
 		self.filtersBox.addItems(all_midpoints_filters_names())
 		grid.addWidget(self.filtersBox, 0, 0)

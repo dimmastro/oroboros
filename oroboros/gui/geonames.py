@@ -33,11 +33,11 @@ class GeoNamesQueryDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# search
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Search for')), 0, 0)
-		self.nameQuery = QLineEdit(self)
+		self.nameQuery = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameQuery, 0, 1)
 		# results
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Results')), 1, 0)
-		self.resultsBox = QComboBox(self)
+		self.resultsBox = PyQt5.QtWidgets.QComboBox(self)
 		self.resultsBox.setEditable(False)
 		grid.addWidget(self.resultsBox, 1, 1)
 		# buttons

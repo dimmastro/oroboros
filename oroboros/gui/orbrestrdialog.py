@@ -56,7 +56,7 @@ class OrbsRestrictionsDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# filter name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# tab widget
 		tabs = QTabWidget(self)

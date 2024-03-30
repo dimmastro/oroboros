@@ -55,7 +55,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# filter name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# tab widget
 		tabs = QTabWidget(self)
@@ -68,79 +68,79 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		mainGrid = PyQt5.QtWidgets.QGridLayout()
 		mainWidget.setLayout(mainGrid)
 		# sun
-		self._cb['Sun'] = QCheckBox(names.planets['Sun'], self)
+		self._cb['Sun'] = PyQt5.QtWidgets.QCheckBox(names.planets['Sun'], self)
 		mainGrid.addWidget(self._cb['Sun'], 0, 0)
 		# moon
-		self._cb['Moon'] = QCheckBox(names.planets['Moon'], self)
+		self._cb['Moon'] = PyQt5.QtWidgets.QCheckBox(names.planets['Moon'], self)
 		mainGrid.addWidget(self._cb['Moon'], 0, 1)
 		# mercury
-		self._cb['Mercury'] = QCheckBox(names.planets['Mercury'], self)
+		self._cb['Mercury'] = PyQt5.QtWidgets.QCheckBox(names.planets['Mercury'], self)
 		mainGrid.addWidget(self._cb['Mercury'], 0, 2)
 		# venus
-		self._cb['Venus'] = QCheckBox(names.planets['Venus'], self)
+		self._cb['Venus'] = PyQt5.QtWidgets.QCheckBox(names.planets['Venus'], self)
 		mainGrid.addWidget(self._cb['Venus'], 0, 3)
 		# mars
-		self._cb['Mars'] = QCheckBox(names.planets['Mars'], self)
+		self._cb['Mars'] = PyQt5.QtWidgets.QCheckBox(names.planets['Mars'], self)
 		mainGrid.addWidget(self._cb['Mars'], 0, 4)
 		# jupiter
-		self._cb['Jupiter'] = QCheckBox(names.planets['Jupiter'], self)
+		self._cb['Jupiter'] = PyQt5.QtWidgets.QCheckBox(names.planets['Jupiter'], self)
 		mainGrid.addWidget(self._cb['Jupiter'], 1, 0)
 		# saturn
-		self._cb['Saturn'] = QCheckBox(names.planets['Saturn'], self)
+		self._cb['Saturn'] = PyQt5.QtWidgets.QCheckBox(names.planets['Saturn'], self)
 		mainGrid.addWidget(self._cb['Saturn'], 1, 1)
 		# uranus
-		self._cb['Uranus'] = QCheckBox(names.planets['Uranus'], self)
+		self._cb['Uranus'] = PyQt5.QtWidgets.QCheckBox(names.planets['Uranus'], self)
 		mainGrid.addWidget(self._cb['Uranus'], 1, 2)
 		# neptune
-		self._cb['Neptune'] = QCheckBox(names.planets['Neptune'], self)
+		self._cb['Neptune'] = PyQt5.QtWidgets.QCheckBox(names.planets['Neptune'], self)
 		mainGrid.addWidget(self._cb['Neptune'], 1, 3)
 		# pluto
-		self._cb['Pluto'] = QCheckBox(names.planets['Pluto'], self)
+		self._cb['Pluto'] = PyQt5.QtWidgets.QCheckBox(names.planets['Pluto'], self)
 		mainGrid.addWidget(self._cb['Pluto'], 1, 4)
 		# earth
-		self._cb['Earth'] = QCheckBox(names.planets['Earth'], self)
+		self._cb['Earth'] = PyQt5.QtWidgets.QCheckBox(names.planets['Earth'], self)
 		mainGrid.addWidget(self._cb['Earth'], 2, 0)
 		# chiron
-		self._cb['Chiron'] = QCheckBox(names.planets['Chiron'], self)
+		self._cb['Chiron'] = PyQt5.QtWidgets.QCheckBox(names.planets['Chiron'], self)
 		mainGrid.addWidget(self._cb['Chiron'], 2, 1)
 		# pholus
-		self._cb['Pholus'] = QCheckBox(names.planets['Pholus'], self)
+		self._cb['Pholus'] = PyQt5.QtWidgets.QCheckBox(names.planets['Pholus'], self)
 		mainGrid.addWidget(self._cb['Pholus'], 2, 2)
 		# ceres
-		self._cb['Ceres'] = QCheckBox(names.planets['Ceres'], self)
+		self._cb['Ceres'] = PyQt5.QtWidgets.QCheckBox(names.planets['Ceres'], self)
 		mainGrid.addWidget(self._cb['Ceres'], 2, 3)
 		# pallas
-		self._cb['Pallas'] = QCheckBox(names.planets['Pallas'], self)
+		self._cb['Pallas'] = PyQt5.QtWidgets.QCheckBox(names.planets['Pallas'], self)
 		mainGrid.addWidget(self._cb['Pallas'], 2, 4)
 		# juno
-		self._cb['Juno'] = QCheckBox(names.planets['Juno'], self)
+		self._cb['Juno'] = PyQt5.QtWidgets.QCheckBox(names.planets['Juno'], self)
 		mainGrid.addWidget(self._cb['Juno'], 3, 0)
 		# vesta
-		self._cb['Vesta'] = QCheckBox(names.planets['Vesta'], self)
+		self._cb['Vesta'] = PyQt5.QtWidgets.QCheckBox(names.planets['Vesta'], self)
 		mainGrid.addWidget(self._cb['Vesta'], 3, 1)
 		# rahu (mean)
-		self._cb['Rahu (mean)'] = QCheckBox(names.planets['Rahu (mean)'], self)
+		self._cb['Rahu (mean)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Rahu (mean)'], self)
 		mainGrid.addWidget(self._cb['Rahu (mean)'], 3, 2)
 		# rahu (true)
-		self._cb['Rahu (true)'] = QCheckBox(names.planets['Rahu (true)'], self)
+		self._cb['Rahu (true)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Rahu (true)'], self)
 		mainGrid.addWidget(self._cb['Rahu (true)'], 3, 3)
 		# ketu (mean)
-		self._cb['Ketu (mean)'] = QCheckBox(names.planets['Ketu (mean)'], self)
+		self._cb['Ketu (mean)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Ketu (mean)'], self)
 		mainGrid.addWidget(self._cb['Ketu (mean)'], 3, 4)
 		# ketu (true)
-		self._cb['Ketu (true)'] = QCheckBox(names.planets['Ketu (true)'], self)
+		self._cb['Ketu (true)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Ketu (true)'], self)
 		mainGrid.addWidget(self._cb['Ketu (true)'], 4, 0)
 		# lilith (mean)
-		self._cb['Lilith (mean)'] = QCheckBox(names.planets['Lilith (mean)'], self)
+		self._cb['Lilith (mean)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Lilith (mean)'], self)
 		mainGrid.addWidget(self._cb['Lilith (mean)'], 4, 1)
 		# lilith (true)
-		self._cb['Lilith (true)'] = QCheckBox(names.planets['Lilith (true)'], self)
+		self._cb['Lilith (true)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Lilith (true)'], self)
 		mainGrid.addWidget(self._cb['Lilith (true)'], 4, 2)
 		# priapus (mean)
-		self._cb['Priapus (mean)'] = QCheckBox(names.planets['Priapus (mean)'], self)
+		self._cb['Priapus (mean)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Priapus (mean)'], self)
 		mainGrid.addWidget(self._cb['Priapus (mean)'], 4, 3)
 		# priapus (true)
-		self._cb['Priapus (true)'] = QCheckBox(names.planets['Priapus (true)'], self)
+		self._cb['Priapus (true)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Priapus (true)'], self)
 		mainGrid.addWidget(self._cb['Priapus (true)'], 4, 4)
 		
 		# ### uranians ###
@@ -149,28 +149,28 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		uranianGrid = PyQt5.QtWidgets.QGridLayout()
 		uranianWidget.setLayout(uranianGrid)
 		# cupido
-		self._cb['Cupido'] = QCheckBox(names.planets['Cupido'], self)
+		self._cb['Cupido'] = PyQt5.QtWidgets.QCheckBox(names.planets['Cupido'], self)
 		uranianGrid.addWidget(self._cb['Cupido'], 0, 0)
 		# hades
-		self._cb['Hades'] = QCheckBox(names.planets['Hades'], self)
+		self._cb['Hades'] = PyQt5.QtWidgets.QCheckBox(names.planets['Hades'], self)
 		uranianGrid.addWidget(self._cb['Hades'], 0, 1)
 		# zeus
-		self._cb['Zeus'] = QCheckBox(names.planets['Zeus'], self)
+		self._cb['Zeus'] = PyQt5.QtWidgets.QCheckBox(names.planets['Zeus'], self)
 		uranianGrid.addWidget(self._cb['Zeus'], 0, 2)
 		# kronos
-		self._cb['Kronos'] = QCheckBox(names.planets['Kronos'], self)
+		self._cb['Kronos'] = PyQt5.QtWidgets.QCheckBox(names.planets['Kronos'], self)
 		uranianGrid.addWidget(self._cb['Kronos'], 0, 3)
 		# apollo
-		self._cb['Apollon'] = QCheckBox(names.planets['Apollon'], self)
+		self._cb['Apollon'] = PyQt5.QtWidgets.QCheckBox(names.planets['Apollon'], self)
 		uranianGrid.addWidget(self._cb['Apollon'], 1, 0)
 		# admetos
-		self._cb['Admetos'] = QCheckBox(names.planets['Admetos'], self)
+		self._cb['Admetos'] = PyQt5.QtWidgets.QCheckBox(names.planets['Admetos'], self)
 		uranianGrid.addWidget(self._cb['Admetos'], 1, 1)
 		# vulkanus
-		self._cb['Vulkanus'] = QCheckBox(names.planets['Vulkanus'], self)
+		self._cb['Vulkanus'] = PyQt5.QtWidgets.QCheckBox(names.planets['Vulkanus'], self)
 		uranianGrid.addWidget(self._cb['Vulkanus'], 1, 2)
 		# poseidon
-		self._cb['Poseidon'] = QCheckBox(names.planets['Poseidon'], self)
+		self._cb['Poseidon'] = PyQt5.QtWidgets.QCheckBox(names.planets['Poseidon'], self)
 		uranianGrid.addWidget(self._cb['Poseidon'], 1, 3)
 		
 		# ### others fictitious ###
@@ -179,37 +179,37 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		othersGrid = PyQt5.QtWidgets.QGridLayout()
 		othersWidget.setLayout(othersGrid)
 		# isis
-		self._cb['Isis'] = QCheckBox(names.planets['Isis'], self)
+		self._cb['Isis'] = PyQt5.QtWidgets.QCheckBox(names.planets['Isis'], self)
 		othersGrid.addWidget(self._cb['Isis'], 0, 0)
 		# nibiru
-		self._cb['Nibiru'] = QCheckBox(names.planets['Nibiru'], self)
+		self._cb['Nibiru'] = PyQt5.QtWidgets.QCheckBox(names.planets['Nibiru'], self)
 		othersGrid.addWidget(self._cb['Nibiru'], 0, 1)
 		# harrington
-		self._cb['Harrington'] = QCheckBox(names.planets['Harrington'], self)
+		self._cb['Harrington'] = PyQt5.QtWidgets.QCheckBox(names.planets['Harrington'], self)
 		othersGrid.addWidget(self._cb['Harrington'], 0, 2)
 		# neptune (leverrier)
-		self._cb['Neptune (Leverrier)'] = QCheckBox(names.planets['Neptune (Leverrier)'], self)
+		self._cb['Neptune (Leverrier)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Neptune (Leverrier)'], self)
 		othersGrid.addWidget(self._cb['Neptune (Leverrier)'], 0, 3)
 		# neptune (adams)
-		self._cb['Neptune (Adams)'] = QCheckBox(names.planets['Neptune (Adams)'], self)
+		self._cb['Neptune (Adams)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Neptune (Adams)'], self)
 		othersGrid.addWidget(self._cb['Neptune (Adams)'], 1, 0)
 		# pluto (lowell)
-		self._cb['Pluto (Lowell)'] = QCheckBox(names.planets['Pluto (Lowell)'], self)
+		self._cb['Pluto (Lowell)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Pluto (Lowell)'], self)
 		othersGrid.addWidget(self._cb['Pluto (Lowell)'], 1, 1)
 		# pluto (pickering)
-		self._cb['Pluto (Pickering)'] = QCheckBox(names.planets['Pluto (Pickering)'], self)
+		self._cb['Pluto (Pickering)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Pluto (Pickering)'], self)
 		othersGrid.addWidget(self._cb['Pluto (Pickering)'], 1, 2)
 		# vulcan
-		self._cb['Vulcan'] = QCheckBox(names.planets['Vulcan'], self)
+		self._cb['Vulcan'] = PyQt5.QtWidgets.QCheckBox(names.planets['Vulcan'], self)
 		othersGrid.addWidget(self._cb['Vulcan'], 1, 3)
 		# white moon
-		self._cb['White Moon'] = QCheckBox(names.planets['White Moon'], self)
+		self._cb['White Moon'] = PyQt5.QtWidgets.QCheckBox(names.planets['White Moon'], self)
 		othersGrid.addWidget(self._cb['White Moon'], 2, 0)
 		# proserpina
-		self._cb['Proserpina'] = QCheckBox(names.planets['Proserpina'], self)
+		self._cb['Proserpina'] = PyQt5.QtWidgets.QCheckBox(names.planets['Proserpina'], self)
 		othersGrid.addWidget(self._cb['Proserpina'], 2, 1)
 		# waldemath
-		self._cb['Waldemath'] = QCheckBox(names.planets['Waldemath'], self)
+		self._cb['Waldemath'] = PyQt5.QtWidgets.QCheckBox(names.planets['Waldemath'], self)
 		othersGrid.addWidget(self._cb['Waldemath'], 2, 2)
 		
 		# ### cusps ###
@@ -221,38 +221,38 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		x = (0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2)
 		y = (0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3)
 		for i in range(12):
-			self._cb['Cusp %.2d' % (i+1,)] = QCheckBox(
+			self._cb['Cusp %.2d' % (i+1,)] = PyQt5.QtWidgets.QCheckBox(
 				names.houses['Cusp %.2d' % (i+1,)], self)
 			cuspsGrid.addWidget(self._cb['Cusp %.2d' % (i+1,)], x[i], y[i])
 		# asc
-		self._cb['Asc'] = QCheckBox(names.planets['Asc'], self)
+		self._cb['Asc'] = PyQt5.QtWidgets.QCheckBox(names.planets['Asc'], self)
 		cuspsGrid.addWidget(self._cb['Asc'], 3, 0)
 		# mc
-		self._cb['Mc'] = QCheckBox(names.planets['Mc'], self)
+		self._cb['Mc'] = PyQt5.QtWidgets.QCheckBox(names.planets['Mc'], self)
 		cuspsGrid.addWidget(self._cb['Mc'], 3, 1)
 		# dsc
-		self._cb['Dsc'] = QCheckBox(names.planets['Dsc'], self)
+		self._cb['Dsc'] = PyQt5.QtWidgets.QCheckBox(names.planets['Dsc'], self)
 		cuspsGrid.addWidget(self._cb['Dsc'], 3, 2)
 		# ic
-		self._cb['Ic'] = QCheckBox(names.planets['Ic'], self)
+		self._cb['Ic'] = PyQt5.QtWidgets.QCheckBox(names.planets['Ic'], self)
 		cuspsGrid.addWidget(self._cb['Ic'], 3, 3)
 		# armc
-		self._cb['Armc'] = QCheckBox(names.planets['Armc'], self)
+		self._cb['Armc'] = PyQt5.QtWidgets.QCheckBox(names.planets['Armc'], self)
 		cuspsGrid.addWidget(self._cb['Armc'], 4, 0)
 		# vertex
-		self._cb['Vertex'] = QCheckBox(names.planets['Vertex'], self)
+		self._cb['Vertex'] = PyQt5.QtWidgets.QCheckBox(names.planets['Vertex'], self)
 		cuspsGrid.addWidget(self._cb['Vertex'], 4, 1)
 		# equatorial asc
-		self._cb['Equatorial Ascendant'] = QCheckBox(names.planets['Equatorial Ascendant'], self)
+		self._cb['Equatorial Ascendant'] = PyQt5.QtWidgets.QCheckBox(names.planets['Equatorial Ascendant'], self)
 		cuspsGrid.addWidget(self._cb['Equatorial Ascendant'], 4, 2)
 		# co-ascendant (koch)
-		self._cb['Co-ascendant (Koch)'] = QCheckBox(names.planets['Co-ascendant (Koch)'], self)
+		self._cb['Co-ascendant (Koch)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Co-ascendant (Koch)'], self)
 		cuspsGrid.addWidget(self._cb['Co-ascendant (Koch)'], 4, 3)
 		# co-ascendant (munkasey)
-		self._cb['Co-ascendant (Munkasey)'] = QCheckBox(names.planets['Co-ascendant (Munkasey)'], self)
+		self._cb['Co-ascendant (Munkasey)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Co-ascendant (Munkasey)'], self)
 		cuspsGrid.addWidget(self._cb['Co-ascendant (Munkasey)'], 5, 0)
 		# polar ascendant
-		self._cb['Polar Ascendant (Munkasey)'] = QCheckBox(names.planets['Polar Ascendant (Munkasey)'], self)
+		self._cb['Polar Ascendant (Munkasey)'] = PyQt5.QtWidgets.QCheckBox(names.planets['Polar Ascendant (Munkasey)'], self)
 		cuspsGrid.addWidget(self._cb['Polar Ascendant (Munkasey)'], 5, 1)
 		
 		# ### gauquelin ###
@@ -264,7 +264,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		x = (0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5)
 		y = (0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5)
 		for i in range(36):
-			self._cb['Sector %.2d' % (i+1,)] = QCheckBox(
+			self._cb['Sector %.2d' % (i+1,)] = PyQt5.QtWidgets.QCheckBox(
 				names.houses['Sector %.2d' % (i+1,)], self)
 			gauquelinGrid.addWidget(self._cb['Sector %.2d' % (i+1,)], x[i], y[i])
 		
@@ -274,7 +274,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		partsGrid = PyQt5.QtWidgets.QGridLayout()
 		partsWidget.setLayout(partsGrid)
 		# part of fortune (rudhyar)
-		self._cb['Part of Fortune (Rudhyar)'] = QCheckBox(
+		self._cb['Part of Fortune (Rudhyar)'] = PyQt5.QtWidgets.QCheckBox(
 			names.planets['Part of Fortune (Rudhyar)'], self)
 		partsGrid.addWidget(self._cb['Part of Fortune (Rudhyar)'], 0, 0)
 		
@@ -293,7 +293,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		y = 0
 		for i, star in enumerate(res):
 			s = str(star[0])
-			self._cb[s] = QCheckBox(s, self)
+			self._cb[s] = PyQt5.QtWidgets.QCheckBox(s, self)
 			starsGrid.addWidget(self._cb[s], y, i % 6)
 			if i % 6 == 5:
 				y += 1
@@ -313,7 +313,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		y = 0
 		for i, ast in enumerate(res):
 			s = str(ast[0])
-			self._cb[s] = QCheckBox(s, self)
+			self._cb[s] = PyQt5.QtWidgets.QCheckBox(s, self)
 			asteroidsGrid.addWidget(self._cb[s], y, i % 6)
 			if i % 6 == 5:
 				y += 1

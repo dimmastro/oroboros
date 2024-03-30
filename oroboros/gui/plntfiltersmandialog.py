@@ -32,7 +32,7 @@ class PlanetsFiltersManagerDialog(PyQt5.QtWidgets.QDialog):
 		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# list of filters
-		self.filtersBox = QComboBox(self)
+		self.filtersBox = PyQt5.QtWidgets.QComboBox(self)
 		self.filtersBox.setEditable(False)
 		self.filtersBox.addItems(all_planets_filters_names())
 		grid.addWidget(self.filtersBox, 0, 0)
@@ -40,18 +40,25 @@ class PlanetsFiltersManagerDialog(PyQt5.QtWidgets.QDialog):
 		buttonsLayout = QHBoxLayout()
 		grid.addLayout(buttonsLayout, 1, 0)
 		newButton = PyQt5.QtWidgets.QPushButton(tr('New'), self)
-		self.connect(newButton, SIGNAL('clicked()'), self.newFilterEvent)
-		buttonsLayout.addWidget(newButton)
+		# self.connect(newButton, SIGNAL('clicked()'), self.newFilterEvent)
+		# buttonsLayout.addWidget(newButton)
+		newButton.clicked.connect(self.newFilterEvent)
+
 		editButton = PyQt5.QtWidgets.QPushButton(tr('Edit'), self)
-		self.connect(editButton, SIGNAL('clicked()'), self.editFilterEvent)
-		buttonsLayout.addWidget(editButton)
+		# self.connect(editButton, SIGNAL('clicked()'), self.editFilterEvent)
+		# buttonsLayout.addWidget(editButton)
+		editButton.clicked.connect(self.editFilterEvent)
+
 		deleteButton = PyQt5.QtWidgets.QPushButton(tr('Delete'), self)
-		self.connect(deleteButton, SIGNAL('clicked()'), self.deleteFilterEvent)
-		buttonsLayout.addWidget(deleteButton)
+		# self.connect(deleteButton, SIGNAL('clicked()'), self.deleteFilterEvent)
+		# buttonsLayout.addWidget(deleteButton)
+		deleteButton.clicked.connect(self.deleteFilterEvent)
+
 		closeButton = PyQt5.QtWidgets.QPushButton(tr('Close'), self)
 		closeButton.setDefault(True)
-		self.connect(closeButton, SIGNAL('clicked()'), SLOT('close()'))
-		buttonsLayout.addWidget(closeButton)
+		# self.connect(closeButton, SIGNAL('clicked()'), SLOT('close()'))
+		# buttonsLayout.addWidget(closeButton)
+		closeButton.clicked.connect(self.close)
 	
 	def newFilterEvent(self):
 		new = PlanetsFilterDialog(self)

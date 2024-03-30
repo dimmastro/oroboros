@@ -60,15 +60,15 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		mainWidget.setLayout(mainGrid)
 		# user name
 		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('User name')), 0, 0)
-		self.usernameEdit = QLineEdit(self)
+		self.usernameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		mainGrid.addWidget(self.usernameEdit, 0, 1)
 		# user mail
 		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('User email')), 1, 0)
-		self.usermailEdit = QLineEdit(self)
+		self.usermailEdit = PyQt5.QtWidgets.QLineEdit(self)
 		mainGrid.addWidget(self.usermailEdit, 1, 1)
 		# language
 		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Language')), 2, 0)
-		self.languageEdit = QComboBox(self)
+		self.languageEdit = PyQt5.QtWidgets.QComboBox(self)
 		alllng = translations.languages
 		alllng.insert(0, '')
 		self.languageEdit.addItems(alllng)
@@ -77,18 +77,20 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		# charts directory
 		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Charts dir')), 3, 0)
 		layout = QHBoxLayout()
-		self.chartsdirEdit = QLineEdit(self)
+		self.chartsdirEdit = PyQt5.QtWidgets.QLineEdit(self)
 		self.chartsdirEdit.setReadOnly(True)
 		layout.addWidget(self.chartsdirEdit)
-		chtdirButton = QToolButton(self)
+		chtdirButton = PyQt5.QtWidgets.QToolButton(self)
 		chtdirButton.setIcon(QIcon(os.path.join(_baseDir,
 			'icons', 'gtk-directory.png')))
 		chtdirButton.setToolTip(tr('Select charts directory'))
-		self.connect(chtdirButton, SIGNAL('clicked()'), self.chartsDirSelect)
-		layout.addWidget(chtdirButton)
+		# self.connect(chtdirButton, SIGNAL('clicked()'), self.chartsDirSelect)
+		# layout.addWidget(chtdirButton)
+		chtdirButton.clicked.connect(self.chartsDirSelect)
+
 		mainGrid.addLayout(layout, 3, 1)
 		# use docutils
-		self.useDocutilsBox = QCheckBox(tr('Use docutils'), self)
+		self.useDocutilsBox = PyQt5.QtWidgets.QCheckBox(tr('Use docutils'), self)
 		mainGrid.addWidget(self.useDocutilsBox, 4, 0, 1, 2)
 		
 		# ### default chart ###
@@ -100,18 +102,18 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://www.astro.com/atlas">Location</a>'))
 		lbl.setOpenExternalLinks(True)
 		dftChartGrid.addWidget(lbl, 0, 0)
-		self.locationEdit = QLineEdit(self)
+		self.locationEdit = PyQt5.QtWidgets.QLineEdit(self)
 		dftChartGrid.addWidget(self.locationEdit, 0, 1)
 		# default country
 		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Country')), 1, 0)
-		self.countryEdit = QLineEdit(self)
+		self.countryEdit = PyQt5.QtWidgets.QLineEdit(self)
 		dftChartGrid.addWidget(self.countryEdit, 1, 1)
 		# default zoneinfo
 		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://en.wikipedia.org/wiki/List_of_zoneinfo_timezones">Zoneinfo</a>'))
 		lbl.setToolTip(tr('Posix timezone file (for charts after 1900)'))
 		lbl.setOpenExternalLinks(True)
 		dftChartGrid.addWidget(lbl, 2, 0)
-		self.zoneinfoEdit = QComboBox(self)
+		self.zoneinfoEdit = PyQt5.QtWidgets.QComboBox(self)
 		alltz = pytz.all_timezones[:]
 		alltz.insert(0, '')
 		self.zoneinfoEdit.addItems(alltz)
@@ -122,7 +124,7 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		lbl.setToolTip(tr('Standard timezone (for local mean time)'))
 		lbl.setOpenExternalLinks(True)
 		dftChartGrid.addWidget(lbl, 3, 0)
-		self.timezoneEdit = QComboBox(self)
+		self.timezoneEdit = PyQt5.QtWidgets.QComboBox(self)
 		alltz = [str(x) for x in timezone.all_timezones]
 		alltz.insert(0, '')
 		self.timezoneEdit.addItems(alltz)
@@ -143,25 +145,29 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		self.altitudeEdit = AltitudeEdit(cfg.dft_altitude, self)
 		geoLayout.addWidget(self.altitudeEdit)
 		# geonames query
-		geoButton = QToolButton(self)
+		geoButton = PyQt5.QtWidgets.QToolButton(self)
 		geoButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'earth-icon.png')))
 		geoButton.setToolTip(tr('Query GeoNames.org'))
-		self.connect(geoButton, SIGNAL('clicked()'), self.queryGeoNames)
-		geoLayout.addWidget(geoButton)
+		# self.connect(geoButton, SIGNAL('clicked()'), self.queryGeoNames)
+		# geoLayout.addWidget(geoButton)
+		geoButton.clicked.connect(self.queryGeoNames)
+
 		# filter
 		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter')), 7, 0)
 		filtLayout = QHBoxLayout()
-		self.filterEdit = QComboBox(self)
+		self.filterEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.filterEdit.addItems(all_filters_names())
 		self.filterEdit.setEditable(False)
 		filtLayout.addWidget(self.filterEdit)
-		filtButton = QToolButton(self)
+		filtButton = PyQt5.QtWidgets.QToolButton(self)
 		filtButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		filtButton.setToolTip(tr('Edit filter'))
-		self.connect(filtButton, SIGNAL('clicked()'), self.editFilter)
-		filtLayout.addWidget(filtButton)
+		# self.connect(filtButton, SIGNAL('clicked()'), self.editFilter)
+		# filtLayout.addWidget(filtButton)
+		filtButton.clicked.connect(self.editFilter)
+
 		dftChartGrid.addLayout(filtLayout, 7, 1)
 		
 		# ### mercurial settings ###
@@ -170,7 +176,7 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		hgGrid = PyQt5.QtWidgets.QGridLayout()
 		hgWidget.setLayout(hgGrid)
 		# use hg
-		self.useHgBox = QCheckBox(tr('Use Mercurial'), self)
+		self.useHgBox = PyQt5.QtWidgets.QCheckBox(tr('Use Mercurial'), self)
 		self.useHgBox.setToolTip(
 			tr('Pull changes on startup and push changes on shutdown'))
 		hgGrid.addWidget(self.useHgBox, 0, 0, 1, 2)
@@ -178,30 +184,37 @@ class CfgDialog(PyQt5.QtWidgets.QDialog):
 		lbl = PyQt5.QtWidgets.QLabel(tr('Hg repo'))
 		lbl.setToolTip(tr('Distant repository address'))
 		hgGrid.addWidget(lbl, 1, 0)
-		self.hgRepoEdit = QLineEdit(self)
+		self.hgRepoEdit = PyQt5.QtWidgets.QLineEdit(self)
 		hgGrid.addWidget(self.hgRepoEdit, 1, 1)
 		# hg user
 		hgGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Username')), 2, 0)
-		self.hgUserEdit = QLineEdit(self)
+		self.hgUserEdit = PyQt5.QtWidgets.QLineEdit(self)
 		hgGrid.addWidget(self.hgUserEdit, 2, 1)
 		# hg pswd
 		hgGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Password')), 3, 0)
-		self.hgPswdEdit = QLineEdit(self)
-		self.hgPswdEdit.setEchoMode(QLineEdit.Password)
+		self.hgPswdEdit = PyQt5.QtWidgets.QLineEdit(self)
+		self.hgPswdEdit.setEchoMode(PyQt5.QtWidgets.QLineEdit.Password)
 		hgGrid.addWidget(self.hgPswdEdit, 3, 1)
 		
 		# ### buttons ###
 		buttonsLayout = QHBoxLayout()
 		resetButton = PyQt5.QtWidgets.QPushButton(tr('Reset'), self)
-		self.connect(resetButton, SIGNAL('clicked()'), self.reset)
-		buttonsLayout.addWidget(resetButton)
+		# self.connect(resetButton, SIGNAL('clicked()'), self.reset)
+		# buttonsLayout.addWidget(resetButton)
+		resetButton.clicked.connect(self.reset)
+
 		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
-		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
-		buttonsLayout.addWidget(cancelButton)
+		# self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
+		# buttonsLayout.addWidget(cancelButton)
+		cancelButton.clicked.connect(self.reject)
+
 		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
-		self.connect(okButton, SIGNAL('clicked()'), self.accept)
-		buttonsLayout.addWidget(okButton)
+		# self.connect(okButton, SIGNAL('clicked()'), self.accept)
+		# buttonsLayout.addWidget(okButton)
+		okButton.clicked.connect(self.accept)
+
+
 		grid.addLayout(buttonsLayout, 1, 0)
 		# fill entries
 		self.reset()

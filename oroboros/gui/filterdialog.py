@@ -80,27 +80,27 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		generalWidget.setLayout(grid)
 		# filter name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# bg color
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Background')), 1, 0)
-		self.bgcolorEdit = QComboBox(self)
+		self.bgcolorEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.bgcolorEdit.setEditable(False)
 		self.bgcolorEdit.addItems([tr('Black'), tr('White')])
 		grid.addWidget(self.bgcolorEdit, 1, 1)
 		# ephe type
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Ephemeris')), 2, 0)
-		self.ephetypeEdit = QComboBox(self)
+		self.ephetypeEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.ephetypeEdit.setEditable(False)
 		self.ephetypeEdit.addItems([tr('Swiss'), tr('JPL'), tr('Moshier')])
 		grid.addWidget(self.ephetypeEdit, 2, 1)
 		# ephe path
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Ephem. path')), 3, 0)
 		ephLayout = QHBoxLayout()
-		self.ephepathEdit = QLineEdit(self)
+		self.ephepathEdit = PyQt5.QtWidgets.QLineEdit(self)
 		self.ephepathEdit.setReadOnly(True)
 		ephLayout.addWidget(self.ephepathEdit)
-		selectButton = QToolButton(self)
+		selectButton = PyQt5.QtWidgets.QToolButton(self)
 		selectButton.setIcon(QIcon(os.path.join(_baseDir,
 			'icons', 'gtk-directory.png')))
 		selectButton.setToolTip(tr('Select ephemeris path'))
@@ -109,13 +109,13 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		grid.addLayout(ephLayout, 3, 1)
 		# house system
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Domification')), 4, 0)
-		self.hsysEdit = QComboBox(self)
+		self.hsysEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.hsysEdit.setEditable(False)
 		self.hsysEdit.addItems([y for x, y in names.houseSystems])
 		grid.addWidget(self.hsysEdit, 4, 1)
 		# sidereal mode
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Sidereal mode')), 5, 0)
-		self.sidmodeEdit = QComboBox(self)
+		self.sidmodeEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.sidmodeEdit.setEditable(False)
 		self.sidmodeEdit.addItems([y for x, y in names.sidModes])
 		grid.addWidget(self.sidmodeEdit, 5, 1)
@@ -125,7 +125,7 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		self.sidt0Edit.setDecimals(6)
 		self.sidt0Edit.setMaximum(9999999)
 		self.sidt0Edit.setSuffix(tr(' JD', 'Julian day suffix'))
-		self.sidt0Edit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.sidt0Edit.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		grid.addWidget(self.sidt0Edit, 6, 1)
 		# sidereal ayanamsa at t0
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Ayanamsa T0')), 7, 0)
@@ -133,18 +133,18 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		self.sidayant0Edit.setDecimals(6)
 		self.sidayant0Edit.setMaximum(360)
 		self.sidayant0Edit.setSuffix(tr('\xb0', 'Degrees'))
-		self.sidayant0Edit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.sidayant0Edit.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		grid.addWidget(self.sidayant0Edit, 7, 1)
 		# true positions
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Calc. positions')), 8, 0)
-		self.trueposEdit = QComboBox(self)
+		self.trueposEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.trueposEdit.setEditable(False)
 		self.trueposEdit.addItems(
 			[tr('Apparent', 'Positions'), tr('True', 'Positions')])
 		grid.addWidget(self.trueposEdit, 8, 1)
 		# xcentric
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Situation')), 9, 0)
-		self.xcentricEdit = QComboBox(self)
+		self.xcentricEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.xcentricEdit.setEditable(False)
 		self.xcentricEdit.addItems(
 			[tr('Geocentric'), tr('Topocentric'), tr('Heliocentric'),
@@ -164,10 +164,10 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		# planets filter
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Planets filter')), 0, 0)
 		pfLayout = QHBoxLayout()
-		self.planetsEdit = QComboBox(self)
+		self.planetsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.planetsEdit.setEditable(False)
 		pfLayout.addWidget(self.planetsEdit)
-		pfButton = QToolButton(self)
+		pfButton = PyQt5.QtWidgets.QToolButton(self)
 		pfButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		pfButton.setToolTip(tr('Edit planets filter'))
@@ -177,10 +177,10 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		# aspects filter
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects filter')), 1, 0)
 		afLayout = QHBoxLayout()
-		self.aspectsEdit = QComboBox(self)
+		self.aspectsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.aspectsEdit.setEditable(False)
 		afLayout.addWidget(self.aspectsEdit)
-		afButton = QToolButton(self)
+		afButton = PyQt5.QtWidgets.QToolButton(self)
 		afButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		afButton.setToolTip(tr('Edit aspects filter'))
@@ -190,10 +190,10 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		# orbs filter
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs filter')), 2, 0)
 		ofLayout = QHBoxLayout()
-		self.orbsEdit = QComboBox(self)
+		self.orbsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.orbsEdit.setEditable(False)
 		ofLayout.addWidget(self.orbsEdit)
-		ofButton = QToolButton(self)
+		ofButton = PyQt5.QtWidgets.QToolButton(self)
 		ofButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		ofButton.setToolTip(tr('Edit orbs filter'))
@@ -203,10 +203,10 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		# aspects restrictions
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects restrictions')), 3, 0)
 		arLayout = QHBoxLayout()
-		self.asprestrEdit = QComboBox(self)
+		self.asprestrEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.asprestrEdit.setEditable(False)
 		arLayout.addWidget(self.asprestrEdit)
-		arButton = QToolButton(self)
+		arButton = PyQt5.QtWidgets.QToolButton(self)
 		arButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		arButton.setToolTip(tr('Edit aspects restrictions'))
@@ -216,10 +216,10 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		# orbs restrictions
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs modifiers')), 4, 0)
 		orLayout = QHBoxLayout()
-		self.orbrestrEdit = QComboBox(self)
+		self.orbrestrEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.orbrestrEdit.setEditable(False)
 		orLayout.addWidget(self.orbrestrEdit)
-		orButton = QToolButton(self)
+		orButton = PyQt5.QtWidgets.QToolButton(self)
 		orButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		orButton.setToolTip(tr('Edit orbs restrictions'))
@@ -228,22 +228,22 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		grid.addLayout(orLayout, 4, 1)
 		# midpoints settings
 		## calc midpoints
-		self.calc_midpEdit = QCheckBox(tr('Calc. midpoints'), self)
+		self.calc_midpEdit = PyQt5.QtWidgets.QCheckBox(tr('Calc. midpoints'), self)
 		self.connect(self.calc_midpEdit, SIGNAL('stateChanged(int)'),
 			self.calc_midpEditChanged)
 		grid.addWidget(self.calc_midpEdit, 5, 0)
 		## draw midpoints
-		self.draw_midpEdit = QCheckBox(tr('Draw midpoints aspects'), self)
+		self.draw_midpEdit = PyQt5.QtWidgets.QCheckBox(tr('Draw midpoints aspects'), self)
 		self.connect(self.draw_midpEdit, SIGNAL('stateChanged(int)'),
 			self.draw_midpEditChanged)
 		grid.addWidget(self.draw_midpEdit, 5, 1)
 		## filters
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('MidPoints filter')), 6, 0)
 		mpLayout = QHBoxLayout()
-		self.midpointsEdit = QComboBox(self)
+		self.midpointsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.midpointsEdit.setEditable(False)
 		mpLayout.addWidget(self.midpointsEdit)
-		mpButton = QToolButton(self)
+		mpButton = PyQt5.QtWidgets.QToolButton(self)
 		mpButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		mpButton.setToolTip(tr('Edit MidPoints filter'))

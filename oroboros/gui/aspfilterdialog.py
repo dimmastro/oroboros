@@ -54,7 +54,7 @@ class AspectsFilterDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# filter name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# tab widget
 		tabs = QTabWidget(self)
@@ -72,7 +72,7 @@ class AspectsFilterDialog(PyQt5.QtWidgets.QDialog):
 			'Quincunx', 'SesquiSquare', 'SemiSquare', 'SemiSextile', 'SquiSquare',
 			'SquiSextile', 'Quintile', 'BiQuintile', 'SemiQuintile')
 		for i, asp in enumerate(mainAspects):
-			self._cb[asp] = QCheckBox(names.aspects[asp], self)
+			self._cb[asp] = PyQt5.QtWidgets.QCheckBox(names.aspects[asp], self)
 			mainGrid.addWidget(self._cb[asp], x[i], y[i])
 		
 		# ### other aspects ###$
@@ -86,7 +86,7 @@ class AspectsFilterDialog(PyQt5.QtWidgets.QDialog):
 			'Septile', 'BiSeptile', 'TriSeptile', 'Undecile', 'BiUndecile',
 			'TriUndecile', 'QuadUndecile', 'QuinUndecile')
 		for i, asp in enumerate(otherAspects):
-			self._cb[asp] = QCheckBox(names.aspects[asp], self)
+			self._cb[asp] = PyQt5.QtWidgets.QCheckBox(names.aspects[asp], self)
 			otherGrid.addWidget(self._cb[asp], x[i], y[i])
 		
 		# comment

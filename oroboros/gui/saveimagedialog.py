@@ -35,18 +35,18 @@ class SaveImageDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# file name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('File Name')), 0, 0)
-		self.fname = QLineEdit(self)
+		self.fname = PyQt5.QtWidgets.QLineEdit(self)
 		self.fname.setReadOnly(True)
 		grid.addWidget(self.fname, 0, 1)
 		# file chooser
-		chooseButton = QToolButton(self)
+		chooseButton = PyQt5.QtWidgets.QToolButton(self)
 		chooseButton.setIcon(QIcon(os.path.join(_iconsDir, 'gtk-open.png')))
 		chooseButton.setToolTip(tr('Get file name'))
 		self.connect(chooseButton, SIGNAL('clicked()'), self.getFileName)
 		grid.addWidget(chooseButton, 0, 2)
 		# extension/format
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Extension')), 1, 0)
-		self.extBox = QComboBox(self)
+		self.extBox = PyQt5.QtWidgets.QComboBox(self)
 		self.extBox.setEditable(False)
 		self.extBox.addItems(
 			['png', 'jpg', 'bmp', 'ppm', 'tiff', 'xbm', 'xpm', 'svg'])
@@ -56,7 +56,7 @@ class SaveImageDialog(PyQt5.QtWidgets.QDialog):
 		self.widthBox = PyQt5.QtWidgets.QSpinBox(self)
 		self.widthBox.setRange(1, 10000)
 		self.widthBox.setSuffix(tr('px', 'Pixels'))
-		self.widthBox.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.widthBox.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.widthBox.setValue(600)
 		grid.addWidget(self.widthBox, 2, 1, 1, 2)
 		# height
@@ -64,7 +64,7 @@ class SaveImageDialog(PyQt5.QtWidgets.QDialog):
 		self.heightBox = PyQt5.QtWidgets.QSpinBox(self)
 		self.heightBox.setRange(1, 10000)
 		self.heightBox.setSuffix(tr('px', 'Pixels'))
-		self.heightBox.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.heightBox.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.heightBox.setValue(600)
 		grid.addWidget(self.heightBox, 3, 1, 1, 2)
 		# buttons

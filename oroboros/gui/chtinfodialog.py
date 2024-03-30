@@ -61,7 +61,7 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# datetime
 		lbl = PyQt5.QtWidgets.QLabel(tr('DateTime'))
@@ -70,14 +70,14 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		self.datetimeEdit = QDateTimeEdit(self)
 		self.datetimeEdit.setDisplayFormat(tr('yyyy-MM-dd hh:mm:ss',
 			'Datetime format'))
-		self.datetimeEdit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.datetimeEdit.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.datetimeEdit.setCalendarPopup(True)
 		self.datetimeEdit.setMinimumDateTime(QDateTime(-5400, 1, 1, 0, 0))
 		self.datetimeEdit.setMaximumDateTime(QDateTime(5400, 1, 1, 0, 0))
 		grid.addWidget(self.datetimeEdit, 1, 1)
 		# calendar
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Calendar')), 2, 0)
-		self.calendarEdit = QComboBox(self)
+		self.calendarEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.calendarEdit.addItems([tr('Gregorian'), tr('Julian')])
 		self.calendarEdit.setEditable(False)
 		grid.addWidget(self.calendarEdit, 2, 1)
@@ -85,11 +85,11 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://www.astro.com/atlas">Location</a>'))
 		lbl.setOpenExternalLinks(True)
 		grid.addWidget(lbl, 3, 0)
-		self.locationEdit = QLineEdit(self)
+		self.locationEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.locationEdit, 3, 1)
 		# country
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Country')), 4, 0)
-		self.countryEdit = QLineEdit(self)
+		self.countryEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.countryEdit, 4, 1)
 		# latitude
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Latitude')), 5, 0)
@@ -106,7 +106,7 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		self.altitudeEdit = AltitudeEdit(chart._altitude, self)
 		geoLayout.addWidget(self.altitudeEdit)
 		# query geonames
-		geoButton = QToolButton(self)
+		geoButton = PyQt5.QtWidgets.QToolButton(self)
 		geoButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'earth-icon.png')))
 		geoButton.setToolTip(tr('Query GeoNames.org'))
@@ -117,7 +117,7 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		lbl.setToolTip(tr('Posix timezone file (for charts after 1900)'))
 		lbl.setOpenExternalLinks(True)
 		grid.addWidget(lbl, 8, 0)
-		self.zoneinfoEdit = QComboBox(self)
+		self.zoneinfoEdit = PyQt5.QtWidgets.QComboBox(self)
 		alltz = pytz.all_timezones[:]
 		alltz.insert(0, '')
 		self.zoneinfoEdit.addItems(alltz)
@@ -127,7 +127,7 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		lbl = PyQt5.QtWidgets.QLabel(tr('Dst'))
 		lbl.setToolTip(tr('Daylight saving time (for ambiguous dates only)'))
 		grid.addWidget(lbl, 9, 0)
-		self.dstEdit = QComboBox(self)
+		self.dstEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.dstEdit.addItems([tr('Not needed'), tr('Yes'), tr('No')])
 		grid.addWidget(self.dstEdit, 9, 1)
 		# timezone
@@ -135,7 +135,7 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		lbl.setToolTip(tr('Standard timezone (for local mean time)'))
 		lbl.setOpenExternalLinks(True)
 		grid.addWidget(lbl, 10, 0)
-		self.timezoneEdit = QComboBox(self)
+		self.timezoneEdit = PyQt5.QtWidgets.QComboBox(self)
 		alltz = [str(x) for x in timezone.all_timezones]
 		alltz.insert(0, '')
 		self.timezoneEdit.addItems(alltz)
@@ -152,7 +152,7 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		self.utcoffsetEdit.setMaximum(24)
 		self.utcoffsetEdit.setSuffix(tr(' h.'))
 		self.utcoffsetEdit.setSpecialValueText(tr('Not needed'))
-		self.utcoffsetEdit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.utcoffsetEdit.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		grid.addWidget(self.utcoffsetEdit, 11, 1)
 		# comment
 		lbl = PyQt5.QtWidgets.QLabel(tr('Comment'))

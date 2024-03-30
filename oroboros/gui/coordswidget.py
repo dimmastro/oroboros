@@ -50,10 +50,10 @@ class _CoordsWidget(QHBoxLayout):
 		self.dgspin.setMinimum(0)
 		self.dgspin.setSuffix(tr('\xb0', 'Degrees'))
 		self.dgspin.setAccelerated(True)
-		self.dgspin.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.dgspin.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.addWidget(self.dgspin)
 		# direction
-		self.drbox = QComboBox(parent)
+		self.drbox = PyQt5.QtWidgets.QComboBox(parent)
 		self.drbox.addItems(strlst)
 		self.drbox.setEditable(False)
 		self.addWidget(self.drbox)
@@ -63,7 +63,7 @@ class _CoordsWidget(QHBoxLayout):
 		self.mnspin.setMinimum(0)
 		self.mnspin.setSuffix(tr("'", 'Minutes'))
 		self.mnspin.setAccelerated(True)
-		self.mnspin.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.mnspin.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.addWidget(self.mnspin)
 		# seconds
 		self.scspin = PyQt5.QtWidgets.QSpinBox(parent)
@@ -71,7 +71,7 @@ class _CoordsWidget(QHBoxLayout):
 		self.scspin.setMinimum(0)
 		self.scspin.setSuffix(tr('"', 'Seconds'))
 		self.scspin.setAccelerated(True)
-		self.scspin.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.scspin.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.addWidget(self.scspin)
 		# set values
 		self.reset()
@@ -136,7 +136,7 @@ class AltitudeEdit(PyQt5.QtWidgets.QSpinBox):
 		self.setMinimum(0)
 		self.setSuffix(self.tr(' m.', 'meters'))
 		self.setAccelerated(True)
-		self.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.reset()
 	
 	def reset(self):

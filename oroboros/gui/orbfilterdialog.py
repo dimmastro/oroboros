@@ -55,7 +55,7 @@ class OrbsFilterDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# filter name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# tab widget
 		tabs = QTabWidget(self)
@@ -76,7 +76,7 @@ class OrbsFilterDialog(PyQt5.QtWidgets.QDialog):
 			mainGrid.addWidget(PyQt5.QtWidgets.QLabel(names.aspects[asp]), x[i], y[i])
 			self._sb[asp] = PyQt5.QtWidgets.QDoubleSpinBox(self)
 			self._sb[asp].setRange(0, 30)
-			self._sb[asp].setButtonSymbols(QAbstractSpinBox.PlusMinus)
+			self._sb[asp].setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 			self._sb[asp].setSuffix(tr('\xb0', 'Degrees'))
 			mainGrid.addWidget(self._sb[asp], x[i], y[i]+1)
 		
@@ -94,7 +94,7 @@ class OrbsFilterDialog(PyQt5.QtWidgets.QDialog):
 			otherGrid.addWidget(PyQt5.QtWidgets.QLabel(names.aspects[asp]), x[i], y[i])
 			self._sb[asp] = PyQt5.QtWidgets.QDoubleSpinBox(self)
 			self._sb[asp].setRange(0, 30)
-			self._sb[asp].setButtonSymbols(QAbstractSpinBox.PlusMinus)
+			self._sb[asp].setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 			self._sb[asp].setSuffix(tr('\xb0', 'Degrees'))
 			otherGrid.addWidget(self._sb[asp], x[i], y[i]+1)
 		

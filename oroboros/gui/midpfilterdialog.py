@@ -60,15 +60,15 @@ class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 		self.setLayout(grid)
 		# filter name
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
-		self.nameEdit = QLineEdit(self)
+		self.nameEdit = PyQt5.QtWidgets.QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# midp planets filter
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Planets filter')), 1, 0)
 		mppfLayout = QHBoxLayout()
-		self.planetsEdit = QComboBox(self)
+		self.planetsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.planetsEdit.setEditable(False)
 		mppfLayout.addWidget(self.planetsEdit)
-		mppfButton = QToolButton(self)
+		mppfButton = PyQt5.QtWidgets.QToolButton(self)
 		mppfButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		mppfButton.setToolTip(tr('Edit planets filter'))
@@ -78,10 +78,10 @@ class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 		# midp aspects filter
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects filter')), 2, 0)
 		mpafLayout = QHBoxLayout()
-		self.aspectsEdit = QComboBox(self)
+		self.aspectsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.aspectsEdit.setEditable(False)
 		mpafLayout.addWidget(self.aspectsEdit)
-		mpafButton = QToolButton(self)
+		mpafButton = PyQt5.QtWidgets.QToolButton(self)
 		mpafButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		mpafButton.setToolTip(tr('Edit aspects filter'))
@@ -91,10 +91,10 @@ class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 		# midp orbs filter
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs filter')), 3, 0)
 		mpofLayout = QHBoxLayout()
-		self.orbsEdit = QComboBox(self)
+		self.orbsEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.orbsEdit.setEditable(False)
 		mpofLayout.addWidget(self.orbsEdit)
-		mpofButton = QToolButton(self)
+		mpofButton = PyQt5.QtWidgets.QToolButton(self)
 		mpofButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		mpofButton.setToolTip(tr('Edit orbs filter'))
@@ -104,10 +104,10 @@ class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 		# midp aspects restrictions
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects restrictions')), 4, 0)
 		mparLayout = QHBoxLayout()
-		self.asprestrEdit = QComboBox(self)
+		self.asprestrEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.asprestrEdit.setEditable(False)
 		mparLayout.addWidget(self.asprestrEdit)
-		mparButton = QToolButton(self)
+		mparButton = PyQt5.QtWidgets.QToolButton(self)
 		mparButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		mparButton.setToolTip(tr('Edit aspects restrictions'))
@@ -117,10 +117,10 @@ class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 		# midp orbs restrictions
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs modifiers')), 5, 0)
 		mporLayout = QHBoxLayout()
-		self.orbrestrEdit = QComboBox(self)
+		self.orbrestrEdit = PyQt5.QtWidgets.QComboBox(self)
 		self.orbrestrEdit.setEditable(False)
 		mporLayout.addWidget(self.orbrestrEdit)
-		mporButton = QToolButton(self)
+		mporButton = PyQt5.QtWidgets.QToolButton(self)
 		mporButton.setIcon(QIcon(os.path.join(_baseDir, 'icons',
 			'gtk-execute.png')))
 		mporButton.setToolTip(tr('Edit orbs restrictions'))

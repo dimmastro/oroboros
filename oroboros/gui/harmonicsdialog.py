@@ -30,16 +30,16 @@ class HarmonicsDialog(PyQt5.QtWidgets.QDialog):
 		self.valueEdit.setRange(0, 360)
 		self.valueEdit.setSuffix(tr('\xb0', 'Degrees'))
 		self.valueEdit.setDecimals(6)
-		self.valueEdit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.valueEdit.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.valueEdit.setValue(2)
 		layout.addWidget(self.valueEdit, 0, 1)
 		# profection mode
-		self.profMode = QCheckBox(tr('Profection'), self)
+		self.profMode = PyQt5.QtWidgets.QCheckBox(tr('Profection'), self)
 		self.connect(self.profMode, SIGNAL('stateChanged(int)'),
 			self.setProfMode)
 		layout.addWidget(self.profMode, 1, 0)
 		# profection unit
-		self.profUnit = QComboBox(self)
+		self.profUnit = PyQt5.QtWidgets.QComboBox(self)
 		self.profUnit.setEditable(False)
 		self.profUnit.setDisabled(True)
 		units = [tr('Per year'), tr('Per day'), tr('Per hour')]
@@ -53,7 +53,7 @@ class HarmonicsDialog(PyQt5.QtWidgets.QDialog):
 			'Datetime format'))
 		self.datetimeEdit.setMinimumDateTime(QDateTime(-5400, 1, 1, 0, 0))
 		self.datetimeEdit.setMaximumDateTime(QDateTime(5400, 1, 1, 0, 0))
-		self.datetimeEdit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.datetimeEdit.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 		self.datetimeEdit.setDisabled(True)
 		layout.addWidget(self.datetimeEdit, 2, 1)
 		# buttons

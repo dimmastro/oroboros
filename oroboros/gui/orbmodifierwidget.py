@@ -25,7 +25,7 @@ class OrbModifierSpinBox(PyQt5.QtWidgets.QDoubleSpinBox):
 		PyQt5.QtWidgets.QDoubleSpinBox.__init__(self, parent)
 		self.setRange(-100, 100)
 		self.setSuffix(self.tr('%', 'percent'))
-		self.setButtonSymbols(QAbstractSpinBox.PlusMinus)
+		self.setButtonSymbols(PyQt5.QtWidgets.QAbstractSpinBox.PlusMinus)
 
 
 
