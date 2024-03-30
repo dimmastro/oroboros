@@ -8,8 +8,11 @@ Chart wheels.
 
 import os.path
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QTabWidget
+from PyQt5.QtWidgets import QWidget
+
 
 from oroboros.gui import app
 from oroboros.gui.chtpainter import ChartPainter
@@ -26,9 +29,10 @@ class CentralWidget(QTabWidget):
 	
 	def __init__(self, parent):
 		QTabWidget.__init__(self, parent)
-		self.connect(self, SIGNAL('currentChanged(int)'),
-			parent.centralTabChangedEvent)
-	
+		# self.connect(self, SIGNAL('currentChanged(int)'),
+		# 	parent.centralTabChangedEvent)
+		self.currentChanged.connect(parent.centralTabChangedEvent)
+
 	def addTab(self, idx):
 		"""Create a new chart tab."""
 		tab = ChartWheelWidget(idx)
@@ -55,8 +59,11 @@ class CentralWidget(QTabWidget):
 		"""Paint the Oroboros on empty window."""
 		painter = QPainter(self)
 		im = QImage(os.path.join(_iconsDir, 'oroboros.png'))
-		target = QRect(
-			(self.width()/2.0)-170, (self.height()/2.0)-170, 340, 340)
+		# target = QRect(
+		# 	(self.width()/2.0)-170, (self.height()/2.0)-170, 340, 340)
+		target = QRect(int((self.width() / 2.0) - 170), int((self.height() / 2.0) - 170), 340, 340)
+
+
 		painter.drawImage(target, im, QRect(0, 0, 340, 340))
 
 

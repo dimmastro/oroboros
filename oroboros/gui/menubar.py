@@ -6,9 +6,9 @@ Menu bar.
 
 """
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+import PyQt5
 
 __all__ = ['createMenuBar']
 
@@ -24,12 +24,12 @@ def createMenuBar(self):
 	fileMenu.addAction(self.actionOpenMultiChart)
 	fileMenu.addAction(self.actionCustomMultiChart)
 	## chart imports
-	importMenu = QMenu(tr('Import...'), self)
+	importMenu = PyQt5.QtWidgets.QMenu(tr('Import...'), self)
 	importMenu.addAction(self.actionOpenMultiChartA32)
 	importMenu.addAction(self.actionOpenMultiChartSkif)
 	fileMenu.addMenu(importMenu)
 	## chart exports
-	exportMenu = QMenu(tr('Export...'), self)
+	exportMenu = PyQt5.QtWidgets.QMenu(tr('Export...'), self)
 	exportMenu.addAction(self.actionSaveImage)
 	fileMenu.addMenu(exportMenu)
 	fileMenu.addSeparator()
@@ -38,7 +38,7 @@ def createMenuBar(self):
 	fileMenu.addAction(self.actionExit)
 	# subcharts menu
 	chartMenu = menuBar.addMenu(tr('&SubCharts'))
-	chart1Menu = QMenu(tr('Chart 1'), self)
+	chart1Menu = PyQt5.QtWidgets.QMenu(tr('Chart 1'), self)
 	chart1Menu.addAction(self.actionOpenChart1)
 	chart1Menu.addAction(self.actionHideChart1)
 	chart1Menu.addAction(self.actionEditChart1)
@@ -47,7 +47,7 @@ def createMenuBar(self):
 	chart1Menu.addAction(self.actionSaveChart1As)
 	chart1Menu.addAction(self.actionCloseChart1)
 	chartMenu.addMenu(chart1Menu)
-	chart2Menu = QMenu(tr('Chart 2'), self)
+	chart2Menu = PyQt5.QtWidgets.QMenu(tr('Chart 2'), self)
 	chart2Menu.addAction(self.actionOpenChart2)
 	chart2Menu.addAction(self.actionHideChart2)
 	chart2Menu.addAction(self.actionEditChart2)
@@ -59,18 +59,18 @@ def createMenuBar(self):
 	chartMenu.addAction(self.actionSwitchCharts)
 	chartMenu.addSeparator()
 	# compare submenu
-	compMenu = QMenu(tr('Compare'), self)
+	compMenu = PyQt5.QtWidgets.QMenu(tr('Compare'), self)
 	compMenu.addAction(self.actionTransitMode)
 	compMenu.addAction(self.actionProgressionMode)
 	compMenu.addAction(self.actionDirectionMode)
 	chartMenu.addMenu(compMenu)
 	# transform submenu
-	transMenu = QMenu(tr('Transform'), self)
+	transMenu = PyQt5.QtWidgets.QMenu(tr('Transform'), self)
 	transMenu.addAction(self.actionMultiplyPos)
 	transMenu.addAction(self.actionAddPos)
 	chartMenu.addMenu(transMenu)
 	# merge submenu
-	mergeMenu = QMenu(tr('Merge'), self)
+	mergeMenu = PyQt5.QtWidgets.QMenu(tr('Merge'), self)
 	mergeMenu.addAction(self.actionComposite)
 	mergeMenu.addAction(self.actionMidSpaceTime)
 	chartMenu.addMenu(mergeMenu)

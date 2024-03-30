@@ -10,8 +10,9 @@ import sys
 import os.path
 
 import pytz
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
 
 from oroboros.core import timezone
 from oroboros.core.charts import Chart
@@ -19,6 +20,7 @@ from oroboros.core.charts import Chart
 from oroboros.gui import app
 from oroboros.gui.coordswidget import LatitudeEdit, LongitudeEdit, AltitudeEdit
 from oroboros.gui.geonames import GeoNamesQueryDialog
+import PyQt5
 
 
 __all__ = ['ChartInfoDialog']
@@ -27,11 +29,11 @@ __all__ = ['ChartInfoDialog']
 _baseDir = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 
 
-class ChartInfoDialog(QDialog):
+class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 	"""New/edit chart window."""
 	
 	def __init__(self, idx=-1, num=0, parent=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		idx = int(idx)
@@ -41,11 +43,11 @@ class ChartInfoDialog(QDialog):
 		else:
 			try:
 				chart = app.desktop.charts[idx][num]
-				title = unicode(tr('Edit Chart \xab %(chart)s \xbb')) % {
+				title = str(tr('Edit Chart \xab %(chart)s \xbb')) % {
 					'chart': chart._name}
 			except IndexError:
 				chart = Chart(do_calc=False)
-				title = unicode(tr('New SubChart'))
+				title = str(tr('New SubChart'))
 		self._chart = chart
 		self._idx = idx
 		self._num = num
@@ -55,14 +57,14 @@ class ChartInfoDialog(QDialog):
 		self.setMinimumHeight(400)
 		self.setSizeGripEnabled(True)
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# name
-		grid.addWidget(QLabel(tr('Name')), 0, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Name')), 0, 0)
 		self.nameEdit = QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# datetime
-		lbl = QLabel(tr('DateTime'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('DateTime'))
 		lbl.setToolTip(tr('Local date & time'))
 		grid.addWidget(lbl, 1, 0)
 		self.datetimeEdit = QDateTimeEdit(self)
@@ -74,31 +76,31 @@ class ChartInfoDialog(QDialog):
 		self.datetimeEdit.setMaximumDateTime(QDateTime(5400, 1, 1, 0, 0))
 		grid.addWidget(self.datetimeEdit, 1, 1)
 		# calendar
-		grid.addWidget(QLabel(tr('Calendar')), 2, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Calendar')), 2, 0)
 		self.calendarEdit = QComboBox(self)
 		self.calendarEdit.addItems([tr('Gregorian'), tr('Julian')])
 		self.calendarEdit.setEditable(False)
 		grid.addWidget(self.calendarEdit, 2, 1)
 		# location
-		lbl = QLabel(tr('<a href="http://www.astro.com/atlas">Location</a>'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://www.astro.com/atlas">Location</a>'))
 		lbl.setOpenExternalLinks(True)
 		grid.addWidget(lbl, 3, 0)
 		self.locationEdit = QLineEdit(self)
 		grid.addWidget(self.locationEdit, 3, 1)
 		# country
-		grid.addWidget(QLabel(tr('Country')), 4, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Country')), 4, 0)
 		self.countryEdit = QLineEdit(self)
 		grid.addWidget(self.countryEdit, 4, 1)
 		# latitude
-		grid.addWidget(QLabel(tr('Latitude')), 5, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Latitude')), 5, 0)
 		self.latitudeEdit = LatitudeEdit(chart._latitude, self)
 		grid.addLayout(self.latitudeEdit, 5, 1)
 		# longitude
-		grid.addWidget(QLabel(tr('Longitude')), 6, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Longitude')), 6, 0)
 		self.longitudeEdit = LongitudeEdit(chart._longitude, self)
 		grid.addLayout(self.longitudeEdit, 6, 1)
 		# altitude
-		grid.addWidget(QLabel(tr('Altitude')), 7, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Altitude')), 7, 0)
 		geoLayout = QHBoxLayout() ## geolayout
 		grid.addLayout(geoLayout, 7, 1)
 		self.altitudeEdit = AltitudeEdit(chart._altitude, self)
@@ -111,7 +113,7 @@ class ChartInfoDialog(QDialog):
 		self.connect(geoButton, SIGNAL('clicked()'), self.queryGeoNames)
 		geoLayout.addWidget(geoButton)
 		# zoneinfo
-		lbl = QLabel(tr('<a href="http://en.wikipedia.org/wiki/List_of_zoneinfo_timezones">Zoneinfo</a>'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://en.wikipedia.org/wiki/List_of_zoneinfo_timezones">Zoneinfo</a>'))
 		lbl.setToolTip(tr('Posix timezone file (for charts after 1900)'))
 		lbl.setOpenExternalLinks(True)
 		grid.addWidget(lbl, 8, 0)
@@ -122,14 +124,14 @@ class ChartInfoDialog(QDialog):
 		self.zoneinfoEdit.setEditable(False)
 		grid.addWidget(self.zoneinfoEdit, 8, 1)
 		# dst
-		lbl = QLabel(tr('Dst'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('Dst'))
 		lbl.setToolTip(tr('Daylight saving time (for ambiguous dates only)'))
 		grid.addWidget(lbl, 9, 0)
 		self.dstEdit = QComboBox(self)
 		self.dstEdit.addItems([tr('Not needed'), tr('Yes'), tr('No')])
 		grid.addWidget(self.dstEdit, 9, 1)
 		# timezone
-		lbl = QLabel(tr('<a href="http://upload.wikimedia.org/wikipedia/en/e/e7/Timezones2008.png">Timezone</a>'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://upload.wikimedia.org/wikipedia/en/e/e7/Timezones2008.png">Timezone</a>'))
 		lbl.setToolTip(tr('Standard timezone (for local mean time)'))
 		lbl.setOpenExternalLinks(True)
 		grid.addWidget(lbl, 10, 0)
@@ -140,11 +142,11 @@ class ChartInfoDialog(QDialog):
 		self.timezoneEdit.setEditable(False)
 		grid.addWidget(self.timezoneEdit, 10, 1)
 		# utc offset
-		lbl = QLabel(tr('Utc offset'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('Utc offset'))
 		lbl.setToolTip(
 			tr('Coordinated universal time offset (for charts before 1900)'))
 		grid.addWidget(lbl, 11, 0)
-		self.utcoffsetEdit = QDoubleSpinBox(self)
+		self.utcoffsetEdit = PyQt5.QtWidgets.QDoubleSpinBox(self)
 		self.utcoffsetEdit.setDecimals(2)
 		self.utcoffsetEdit.setMinimum(-25)
 		self.utcoffsetEdit.setMaximum(24)
@@ -153,26 +155,26 @@ class ChartInfoDialog(QDialog):
 		self.utcoffsetEdit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
 		grid.addWidget(self.utcoffsetEdit, 11, 1)
 		# comment
-		lbl = QLabel(tr('Comment'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('Comment'))
 		lbl.setToolTip(tr('Accepts reStructured Text'))
 		grid.addWidget(lbl, 12, 0, Qt.AlignTop)
 		self.commentEdit = QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 12, 1)
 		# keywords
-		lbl = QLabel(tr('Keywords'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('Keywords'))
 		lbl.setToolTip(tr('Line-separated "key: word" pairs'))
 		grid.addWidget(lbl, 13, 0, Qt.AlignTop)
 		self.keywordsEdit = QTextEdit('', self)
 		grid.addWidget(self.keywordsEdit, 13, 1)
 		# buttons
 		buttonsLayout = QHBoxLayout()
-		resetButton = QPushButton(tr('Reset'), self)
+		resetButton = PyQt5.QtWidgets.QPushButton(tr('Reset'), self)
 		self.connect(resetButton, SIGNAL('clicked()'), self.reset)
 		buttonsLayout.addWidget(resetButton)
-		cancelButton = QPushButton(tr('Cancel'), self)
+		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
 		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
 		buttonsLayout.addWidget(cancelButton)
-		okButton = QPushButton(tr('Ok'), self)
+		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
 		self.connect(okButton, SIGNAL('clicked()'), self.accept)
 		buttonsLayout.addWidget(okButton)
@@ -251,7 +253,7 @@ class ChartInfoDialog(QDialog):
 		# name
 		name = unicode(self.nameEdit.text())
 		if name == '':
-			QMessageBox.critical(self, tr('Missing Name'),
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Missing Name'),
 				tr('Please set chart name.'))
 			self.nameEdit.setFocus()
 			return
@@ -308,7 +310,7 @@ class ChartInfoDialog(QDialog):
 		try:
 			self._chart.local_datetime
 		except TypeError: ## unable to get local time
-			QMessageBox.critical(self, tr('Ambiguous datetime!'),
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Ambiguous datetime!'),
 				tr('Please set DST.'))
 			self.dstEdit.setFocus()
 			return
@@ -320,12 +322,12 @@ class ChartInfoDialog(QDialog):
 			else:
 				app.replaceChart(self._idx, self._num, self._chart)
 		# done
-		self.done(QDialog.Accepted)
+		self.done(PyQt5.QtWidgets.QDialog.Accepted)
 
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = ChartInfoDialog()
 	main.show()
 	sys.exit(app.exec_())

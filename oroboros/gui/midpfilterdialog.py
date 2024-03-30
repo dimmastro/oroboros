@@ -9,8 +9,9 @@ New/edit mid-points filter.
 import sys
 import os.path
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
 
 from oroboros.core import cfg
 from oroboros.core.midpfilters import MidPointsFilter
@@ -26,7 +27,7 @@ from oroboros.gui.aspfilterdialog import AspectsFilterDialog
 from oroboros.gui.orbfilterdialog import OrbsFilterDialog
 from oroboros.gui.asprestrdialog import AspectsRestrictionsDialog
 from oroboros.gui.orbrestrdialog import OrbsRestrictionsDialog
-
+import PyQt5
 
 __all__ = ['MidPointsFilterDialog']
 
@@ -34,16 +35,16 @@ __all__ = ['MidPointsFilterDialog']
 _baseDir = os.path.dirname(os.path.abspath(__file__))
 
 
-class MidPointsFilterDialog(QDialog):
+class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 	"""Mid-points filter settings."""
 	
 	def __init__(self, parent=None, filt=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		if isinstance(filt, MidPointsFilter):
 			self._filt = filt
-			title = unicode(tr('Edit MidPoints Filter \xab %(filter)s \xbb')) % {
+			title = str(tr('Edit MidPoints Filter \xab %(filter)s \xbb')) % {
 				'filter': filt._name}
 		else:
 			self._filt = MidPointsFilter(cfg.dft_filter._midpoints._idx_)
@@ -55,14 +56,14 @@ class MidPointsFilterDialog(QDialog):
 		self.setMaximumHeight(300)
 		self.setSizeGripEnabled(True)
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# filter name
-		grid.addWidget(QLabel(tr('Filter name')), 0, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
 		self.nameEdit = QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# midp planets filter
-		grid.addWidget(QLabel(tr('Planets filter')), 1, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Planets filter')), 1, 0)
 		mppfLayout = QHBoxLayout()
 		self.planetsEdit = QComboBox(self)
 		self.planetsEdit.setEditable(False)
@@ -75,7 +76,7 @@ class MidPointsFilterDialog(QDialog):
 		mppfLayout.addWidget(mppfButton)
 		grid.addLayout(mppfLayout, 1, 1)
 		# midp aspects filter
-		grid.addWidget(QLabel(tr('Aspects filter')), 2, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects filter')), 2, 0)
 		mpafLayout = QHBoxLayout()
 		self.aspectsEdit = QComboBox(self)
 		self.aspectsEdit.setEditable(False)
@@ -88,7 +89,7 @@ class MidPointsFilterDialog(QDialog):
 		mpafLayout.addWidget(mpafButton)
 		grid.addLayout(mpafLayout, 2, 1)
 		# midp orbs filter
-		grid.addWidget(QLabel(tr('Orbs filter')), 3, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs filter')), 3, 0)
 		mpofLayout = QHBoxLayout()
 		self.orbsEdit = QComboBox(self)
 		self.orbsEdit.setEditable(False)
@@ -101,7 +102,7 @@ class MidPointsFilterDialog(QDialog):
 		mpofLayout.addWidget(mpofButton)
 		grid.addLayout(mpofLayout, 3, 1)
 		# midp aspects restrictions
-		grid.addWidget(QLabel(tr('Aspects restrictions')), 4, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects restrictions')), 4, 0)
 		mparLayout = QHBoxLayout()
 		self.asprestrEdit = QComboBox(self)
 		self.asprestrEdit.setEditable(False)
@@ -114,7 +115,7 @@ class MidPointsFilterDialog(QDialog):
 		mparLayout.addWidget(mparButton)
 		grid.addLayout(mparLayout, 4, 1)
 		# midp orbs restrictions
-		grid.addWidget(QLabel(tr('Orbs modifiers')), 5, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs modifiers')), 5, 0)
 		mporLayout = QHBoxLayout()
 		self.orbrestrEdit = QComboBox(self)
 		self.orbrestrEdit.setEditable(False)
@@ -127,19 +128,19 @@ class MidPointsFilterDialog(QDialog):
 		mporLayout.addWidget(mporButton)
 		grid.addLayout(mporLayout, 5, 1)
 		# comment
-		grid.addWidget(QLabel(tr('Comment')), 6, 0, Qt.AlignTop)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 6, 0, Qt.AlignTop)
 		self.commentEdit = QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 6, 1)
 		
 		# ### buttons ###
 		buttonsLayout = QHBoxLayout()
-		resetButton = QPushButton(tr('Reset'), self)
+		resetButton = PyQt5.QtWidgets.QPushButton(tr('Reset'), self)
 		self.connect(resetButton, SIGNAL('clicked()'), self.reset)
 		buttonsLayout.addWidget(resetButton)
-		cancelButton = QPushButton(tr('Cancel'), self)
+		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
 		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
 		buttonsLayout.addWidget(cancelButton)
-		okButton = QPushButton(tr('Ok'), self)
+		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
 		self.connect(okButton, SIGNAL('clicked()'), self.accept)
 		buttonsLayout.addWidget(okButton)
@@ -267,7 +268,7 @@ class MidPointsFilterDialog(QDialog):
 		# name
 		name = unicode(self.nameEdit.text())
 		if name == '':
-			QMessageBox.critical(self, tr('Missing Name'),
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Missing Name'),
 				tr('Please set filter name.'))
 			self.nameEdit.setFocus()
 			return
@@ -295,8 +296,8 @@ class MidPointsFilterDialog(QDialog):
 		try:
 			self._filt.save()
 		except ValueError: # duplicate filter
-			QMessageBox.critical(self, tr('Error'),
-				unicode(tr('Duplicate filter name \xab %(filter)s \xbb.')) % {
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Error'),
+				str(tr('Duplicate filter name \xab %(filter)s \xbb.')) % {
 					'filter': self._filt._name})
 			self.nameEdit.setFocus()
 			return
@@ -305,12 +306,12 @@ class MidPointsFilterDialog(QDialog):
 		if __name__ != '__main__':
 			app.midPointsFilterUpdatedEvent(self._filt._idx_)
 		# done
-		self.done(QDialog.Accepted)
+		self.done(PyQt5.QtWidgets.QDialog.Accepted)
 
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = MidPointsFilterDialog()
 	main.show()
 	sys.exit(app.exec_())

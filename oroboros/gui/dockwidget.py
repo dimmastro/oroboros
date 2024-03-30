@@ -6,8 +6,15 @@ Dock widget area.
 
 """
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QTabWidget
+from PyQt5.QtWidgets import QDockWidget
+from PyQt5.QtWidgets import QTabWidget
+from PyQt5.QtWidgets import QToolBox
+
+
+
 
 from oroboros.gui import app
 from oroboros.gui import chthtml
@@ -26,8 +33,10 @@ class DockWidget(QDockWidget):
 		self.setMinimumWidth(300)
 		# tabs widget
 		self.tabs = MultiChartTabWidget(self)
-		self.connect(self.tabs, SIGNAL('currentChanged(int)'),
-			parent.dockTabChangedEvent)
+		# self.connect(self.tabs, SIGNAL('currentChanged(int)'),
+		# 	parent.dockTabChangedEvent)
+		self.tabs.currentChanged.connect(parent.dockTabChangedEvent)
+
 		self.setWidget(self.tabs)
 	
 	def addTab(self, idx):

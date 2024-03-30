@@ -9,8 +9,16 @@ New/edit filters set and options.
 import sys
 import os.path
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QTabWidget
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout
+
 
 from oroboros.core import cfg
 from oroboros.core.filters import Filter
@@ -29,7 +37,7 @@ from oroboros.gui.orbfilterdialog import OrbsFilterDialog
 from oroboros.gui.asprestrdialog import AspectsRestrictionsDialog
 from oroboros.gui.orbrestrdialog import OrbsRestrictionsDialog
 from oroboros.gui.midpfilterdialog import MidPointsFilterDialog
-
+import PyQt5
 
 __all__ = ['FilterDialog']
 
@@ -38,15 +46,15 @@ _baseDir = os.path.dirname(os.path.abspath(__file__))
 
 
 ## oroboros.ui.filterdialog.FilterDialog
-class FilterDialog(QDialog):
+class FilterDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None, filt=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		if isinstance(filt, Filter):
 			self._filt = filt
-			title = unicode(tr('Edit Filter \xab %(filter)s \xbb')) % {
+			title = str(tr('Edit Filter \xab %(filter)s \xbb')) % {
 				'filter': filt._name}
 		else:
 			self._filt = Filter(cfg.dft_filter._idx_)
@@ -58,7 +66,7 @@ class FilterDialog(QDialog):
 		self.setMinimumHeight(380)
 		self.setSizeGripEnabled(True)
 		# layout
-		layout = QVBoxLayout(self)
+		layout = PyQt5.QtWidgets.QVBoxLayout(self)
 		self.setLayout(layout)
 		# tabs
 		tabs = QTabWidget(self)
@@ -68,26 +76,26 @@ class FilterDialog(QDialog):
 		generalWidget = QWidget()
 		tabs.addTab(generalWidget, tr('Main', 'Main settings'))
 		# layout
-		grid = QGridLayout()
+		grid = PyQt5.QtWidgets.QGridLayout()
 		generalWidget.setLayout(grid)
 		# filter name
-		grid.addWidget(QLabel(tr('Filter name')), 0, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
 		self.nameEdit = QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# bg color
-		grid.addWidget(QLabel(tr('Background')), 1, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Background')), 1, 0)
 		self.bgcolorEdit = QComboBox(self)
 		self.bgcolorEdit.setEditable(False)
 		self.bgcolorEdit.addItems([tr('Black'), tr('White')])
 		grid.addWidget(self.bgcolorEdit, 1, 1)
 		# ephe type
-		grid.addWidget(QLabel(tr('Ephemeris')), 2, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Ephemeris')), 2, 0)
 		self.ephetypeEdit = QComboBox(self)
 		self.ephetypeEdit.setEditable(False)
 		self.ephetypeEdit.addItems([tr('Swiss'), tr('JPL'), tr('Moshier')])
 		grid.addWidget(self.ephetypeEdit, 2, 1)
 		# ephe path
-		grid.addWidget(QLabel(tr('Ephem. path')), 3, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Ephem. path')), 3, 0)
 		ephLayout = QHBoxLayout()
 		self.ephepathEdit = QLineEdit(self)
 		self.ephepathEdit.setReadOnly(True)
@@ -100,42 +108,42 @@ class FilterDialog(QDialog):
 		ephLayout.addWidget(selectButton)
 		grid.addLayout(ephLayout, 3, 1)
 		# house system
-		grid.addWidget(QLabel(tr('Domification')), 4, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Domification')), 4, 0)
 		self.hsysEdit = QComboBox(self)
 		self.hsysEdit.setEditable(False)
 		self.hsysEdit.addItems([y for x, y in names.houseSystems])
 		grid.addWidget(self.hsysEdit, 4, 1)
 		# sidereal mode
-		grid.addWidget(QLabel(tr('Sidereal mode')), 5, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Sidereal mode')), 5, 0)
 		self.sidmodeEdit = QComboBox(self)
 		self.sidmodeEdit.setEditable(False)
 		self.sidmodeEdit.addItems([y for x, y in names.sidModes])
 		grid.addWidget(self.sidmodeEdit, 5, 1)
 		# sidereal t0
-		grid.addWidget(QLabel(tr('Sidereal T0')), 6, 0)
-		self.sidt0Edit = QDoubleSpinBox(self)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Sidereal T0')), 6, 0)
+		self.sidt0Edit = PyQt5.QtWidgets.QDoubleSpinBox(self)
 		self.sidt0Edit.setDecimals(6)
 		self.sidt0Edit.setMaximum(9999999)
 		self.sidt0Edit.setSuffix(tr(' JD', 'Julian day suffix'))
 		self.sidt0Edit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
 		grid.addWidget(self.sidt0Edit, 6, 1)
 		# sidereal ayanamsa at t0
-		grid.addWidget(QLabel(tr('Ayanamsa T0')), 7, 0)
-		self.sidayant0Edit = QDoubleSpinBox(self)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Ayanamsa T0')), 7, 0)
+		self.sidayant0Edit = PyQt5.QtWidgets.QDoubleSpinBox(self)
 		self.sidayant0Edit.setDecimals(6)
 		self.sidayant0Edit.setMaximum(360)
 		self.sidayant0Edit.setSuffix(tr('\xb0', 'Degrees'))
 		self.sidayant0Edit.setButtonSymbols(QAbstractSpinBox.PlusMinus)
 		grid.addWidget(self.sidayant0Edit, 7, 1)
 		# true positions
-		grid.addWidget(QLabel(tr('Calc. positions')), 8, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Calc. positions')), 8, 0)
 		self.trueposEdit = QComboBox(self)
 		self.trueposEdit.setEditable(False)
 		self.trueposEdit.addItems(
 			[tr('Apparent', 'Positions'), tr('True', 'Positions')])
 		grid.addWidget(self.trueposEdit, 8, 1)
 		# xcentric
-		grid.addWidget(QLabel(tr('Situation')), 9, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Situation')), 9, 0)
 		self.xcentricEdit = QComboBox(self)
 		self.xcentricEdit.setEditable(False)
 		self.xcentricEdit.addItems(
@@ -143,7 +151,7 @@ class FilterDialog(QDialog):
 			tr('Barycentric')])
 		grid.addWidget(self.xcentricEdit, 9, 1)
 		# comment
-		grid.addWidget(QLabel(tr('Comment')), 10, 0, Qt.AlignTop)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 10, 0, Qt.AlignTop)
 		self.commentEdit = QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 10, 1)
 		
@@ -151,10 +159,10 @@ class FilterDialog(QDialog):
 		filtersWidget = QWidget()
 		tabs.addTab(filtersWidget, tr('Filters'))
 		# layout
-		grid = QGridLayout()
+		grid = PyQt5.QtWidgets.QGridLayout()
 		filtersWidget.setLayout(grid)
 		# planets filter
-		grid.addWidget(QLabel(tr('Planets filter')), 0, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Planets filter')), 0, 0)
 		pfLayout = QHBoxLayout()
 		self.planetsEdit = QComboBox(self)
 		self.planetsEdit.setEditable(False)
@@ -167,7 +175,7 @@ class FilterDialog(QDialog):
 		pfLayout.addWidget(pfButton)
 		grid.addLayout(pfLayout, 0, 1)
 		# aspects filter
-		grid.addWidget(QLabel(tr('Aspects filter')), 1, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects filter')), 1, 0)
 		afLayout = QHBoxLayout()
 		self.aspectsEdit = QComboBox(self)
 		self.aspectsEdit.setEditable(False)
@@ -180,7 +188,7 @@ class FilterDialog(QDialog):
 		afLayout.addWidget(afButton)
 		grid.addLayout(afLayout, 1, 1)
 		# orbs filter
-		grid.addWidget(QLabel(tr('Orbs filter')), 2, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs filter')), 2, 0)
 		ofLayout = QHBoxLayout()
 		self.orbsEdit = QComboBox(self)
 		self.orbsEdit.setEditable(False)
@@ -193,7 +201,7 @@ class FilterDialog(QDialog):
 		ofLayout.addWidget(ofButton)
 		grid.addLayout(ofLayout, 2, 1)
 		# aspects restrictions
-		grid.addWidget(QLabel(tr('Aspects restrictions')), 3, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Aspects restrictions')), 3, 0)
 		arLayout = QHBoxLayout()
 		self.asprestrEdit = QComboBox(self)
 		self.asprestrEdit.setEditable(False)
@@ -206,7 +214,7 @@ class FilterDialog(QDialog):
 		arLayout.addWidget(arButton)
 		grid.addLayout(arLayout, 3, 1)
 		# orbs restrictions
-		grid.addWidget(QLabel(tr('Orbs modifiers')), 4, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Orbs modifiers')), 4, 0)
 		orLayout = QHBoxLayout()
 		self.orbrestrEdit = QComboBox(self)
 		self.orbrestrEdit.setEditable(False)
@@ -230,7 +238,7 @@ class FilterDialog(QDialog):
 			self.draw_midpEditChanged)
 		grid.addWidget(self.draw_midpEdit, 5, 1)
 		## filters
-		grid.addWidget(QLabel(tr('MidPoints filter')), 6, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('MidPoints filter')), 6, 0)
 		mpLayout = QHBoxLayout()
 		self.midpointsEdit = QComboBox(self)
 		self.midpointsEdit.setEditable(False)
@@ -245,13 +253,13 @@ class FilterDialog(QDialog):
 		
 		# ### buttons ###
 		buttonsLayout = QHBoxLayout()
-		resetButton = QPushButton(tr('Reset'), self)
+		resetButton = PyQt5.QtWidgets.QPushButton(tr('Reset'), self)
 		self.connect(resetButton, SIGNAL('clicked()'), self.reset)
 		buttonsLayout.addWidget(resetButton)
-		cancelButton = QPushButton(tr('Cancel'), self)
+		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
 		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
 		buttonsLayout.addWidget(cancelButton)
-		okButton = QPushButton(tr('Ok'), self)
+		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
 		self.connect(okButton, SIGNAL('clicked()'), self.accept)
 		buttonsLayout.addWidget(okButton)
@@ -272,7 +280,7 @@ class FilterDialog(QDialog):
 				self.tr('Set JPL file'),
 				os.path.expanduser('~')))
 		else: # moshier
-			QMessageBox.information(self, self.tr('Moshier ephemeris'),
+			PyQt5.QtWidgets.QMessageBox.information(self, self.tr('Moshier ephemeris'),
 				self.tr('No ephemeris path needed for Moshier ephemeris.'))
 		if path != '':
 				self.ephepathEdit.setText(path)
@@ -470,7 +478,7 @@ class FilterDialog(QDialog):
 		# name
 		name = unicode(self.nameEdit.text())
 		if name == '':
-			QMessageBox.critical(self, tr('Missing Name'),
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Missing Name'),
 				tr('Please set filter name.'))
 			self.nameEdit.setFocus()
 			return
@@ -538,8 +546,8 @@ class FilterDialog(QDialog):
 		try:
 			self._filt.save()
 		except ValueError: # duplicate filter
-			QMessageBox.critical(self, tr('Error'),
-				unicode(tr('Duplicate filter name \xab %(filter)s \xbb.')) % {
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Error'),
+				str(tr('Duplicate filter name \xab %(filter)s \xbb.')) % {
 					'filter': self._filt._name})
 			self.nameEdit.setFocus()
 			return
@@ -548,13 +556,13 @@ class FilterDialog(QDialog):
 		if __name__ != '__main__':
 			app.filterUpdatedEvent(self._filt._idx_)
 		# done
-		self.done(QDialog.Accepted)
+		self.done(PyQt5.QtWidgets.QDialog.Accepted)
 
 
 
 ## oroboros.ui.filterdialog.main
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = FilterDialog()
 	main.show()
 	sys.exit(app.exec_())

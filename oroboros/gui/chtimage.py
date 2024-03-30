@@ -6,9 +6,9 @@ Produce charts images.
 
 """
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from PyQt4.QtSvg import QSvgGenerator
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtSvg import QSvgGenerator
 
 
 from oroboros.gui.chtpainter import ChartPainter

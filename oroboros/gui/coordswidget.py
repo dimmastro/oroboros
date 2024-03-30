@@ -6,8 +6,11 @@ Editable boxes for geocoords.
 
 """
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout
+import PyQt5
 
 from oroboros.core.geocoords import Latitude, Longitude
 
@@ -42,7 +45,7 @@ class _CoordsWidget(QHBoxLayout):
 			self.drlist = ['E', 'W']
 			strlst = [tr('E', 'East'), tr('W', 'West')]
 		# degrees
-		self.dgspin = QSpinBox(parent)
+		self.dgspin = PyQt5.QtWidgets.QSpinBox(parent)
 		self.dgspin.setMaximum(maxdg)
 		self.dgspin.setMinimum(0)
 		self.dgspin.setSuffix(tr('\xb0', 'Degrees'))
@@ -55,7 +58,7 @@ class _CoordsWidget(QHBoxLayout):
 		self.drbox.setEditable(False)
 		self.addWidget(self.drbox)
 		# minutes
-		self.mnspin = QSpinBox(parent)
+		self.mnspin = PyQt5.QtWidgets.QSpinBox(parent)
 		self.mnspin.setMaximum(59)
 		self.mnspin.setMinimum(0)
 		self.mnspin.setSuffix(tr("'", 'Minutes'))
@@ -63,7 +66,7 @@ class _CoordsWidget(QHBoxLayout):
 		self.mnspin.setButtonSymbols(QAbstractSpinBox.PlusMinus)
 		self.addWidget(self.mnspin)
 		# seconds
-		self.scspin = QSpinBox(parent)
+		self.scspin = PyQt5.QtWidgets.QSpinBox(parent)
 		self.scspin.setMaximum(59)
 		self.scspin.setMinimum(0)
 		self.scspin.setSuffix(tr('"', 'Seconds'))
@@ -124,10 +127,10 @@ class LongitudeEdit(_CoordsWidget):
 		self.reset()
 
 
-class AltitudeEdit(QSpinBox):
+class AltitudeEdit(PyQt5.QtWidgets.QSpinBox):
 	
 	def __init__(self, alt, parent):
-		QSpinBox.__init__(self, parent)
+		PyQt5.QtWidgets.QSpinBox.__init__(self, parent)
 		self._alt = alt
 		self.setMaximum(10000)
 		self.setMinimum(0)
@@ -140,7 +143,7 @@ class AltitudeEdit(QSpinBox):
 		self.setValue(int(self._alt))
 	
 	def altitude(self):
-		return QSpinBox.value(self)
+		return PyQt5.QtWidgets.QSpinBox.value(self)
 	
 	def setAltitude(self, alt):
 		self._alt = alt

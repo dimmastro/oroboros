@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Oroboros user interface (PyQt4).
+Oroboros user interface (PyQt5).
 
 """
 

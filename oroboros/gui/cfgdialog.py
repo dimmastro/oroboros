@@ -10,8 +10,13 @@ import sys
 import os.path
 
 import pytz
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QTabWidget
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QHBoxLayout
+
+
 
 from oroboros.core import cfg
 from oroboros.core import timezone
@@ -21,7 +26,7 @@ from oroboros.gui import translations
 from oroboros.gui.coordswidget import LatitudeEdit, LongitudeEdit, AltitudeEdit
 from oroboros.gui.filterdialog import FilterDialog
 from oroboros.gui.geonames import GeoNamesQueryDialog
-
+import PyQt5
 
 __all__ = ['CfgDialog']
 
@@ -29,10 +34,10 @@ __all__ = ['CfgDialog']
 _baseDir = os.path.dirname(os.path.abspath(__file__))
 
 
-class CfgDialog(QDialog):
+class CfgDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		# set window title
@@ -42,7 +47,7 @@ class CfgDialog(QDialog):
 		self.setMaximumWidth(400)
 		self.setSizeGripEnabled(True)
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# tab widget
 		tabs = QTabWidget(self)
@@ -51,18 +56,18 @@ class CfgDialog(QDialog):
 		# ### main settings ###
 		mainWidget = QWidget()
 		tabs.addTab(mainWidget, tr('Main', 'Main settings'))
-		mainGrid = QGridLayout()
+		mainGrid = PyQt5.QtWidgets.QGridLayout()
 		mainWidget.setLayout(mainGrid)
 		# user name
-		mainGrid.addWidget(QLabel(tr('User name')), 0, 0)
+		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('User name')), 0, 0)
 		self.usernameEdit = QLineEdit(self)
 		mainGrid.addWidget(self.usernameEdit, 0, 1)
 		# user mail
-		mainGrid.addWidget(QLabel(tr('User email')), 1, 0)
+		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('User email')), 1, 0)
 		self.usermailEdit = QLineEdit(self)
 		mainGrid.addWidget(self.usermailEdit, 1, 1)
 		# language
-		mainGrid.addWidget(QLabel(tr('Language')), 2, 0)
+		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Language')), 2, 0)
 		self.languageEdit = QComboBox(self)
 		alllng = translations.languages
 		alllng.insert(0, '')
@@ -70,7 +75,7 @@ class CfgDialog(QDialog):
 		self.languageEdit.setEditable(False)
 		mainGrid.addWidget(self.languageEdit, 2, 1)
 		# charts directory
-		mainGrid.addWidget(QLabel(tr('Charts dir')), 3, 0)
+		mainGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Charts dir')), 3, 0)
 		layout = QHBoxLayout()
 		self.chartsdirEdit = QLineEdit(self)
 		self.chartsdirEdit.setReadOnly(True)
@@ -89,20 +94,20 @@ class CfgDialog(QDialog):
 		# ### default chart ###
 		dftChartWidget = QWidget()
 		tabs.addTab(dftChartWidget, tr('Default Chart'))
-		dftChartGrid = QGridLayout()
+		dftChartGrid = PyQt5.QtWidgets.QGridLayout()
 		dftChartWidget.setLayout(dftChartGrid)
 		# default location
-		lbl = QLabel(tr('<a href="http://www.astro.com/atlas">Location</a>'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://www.astro.com/atlas">Location</a>'))
 		lbl.setOpenExternalLinks(True)
 		dftChartGrid.addWidget(lbl, 0, 0)
 		self.locationEdit = QLineEdit(self)
 		dftChartGrid.addWidget(self.locationEdit, 0, 1)
 		# default country
-		dftChartGrid.addWidget(QLabel(tr('Country')), 1, 0)
+		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Country')), 1, 0)
 		self.countryEdit = QLineEdit(self)
 		dftChartGrid.addWidget(self.countryEdit, 1, 1)
 		# default zoneinfo
-		lbl = QLabel(tr('<a href="http://en.wikipedia.org/wiki/List_of_zoneinfo_timezones">Zoneinfo</a>'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://en.wikipedia.org/wiki/List_of_zoneinfo_timezones">Zoneinfo</a>'))
 		lbl.setToolTip(tr('Posix timezone file (for charts after 1900)'))
 		lbl.setOpenExternalLinks(True)
 		dftChartGrid.addWidget(lbl, 2, 0)
@@ -113,7 +118,7 @@ class CfgDialog(QDialog):
 		self.zoneinfoEdit.setEditable(False)
 		dftChartGrid.addWidget(self.zoneinfoEdit, 2, 1)
 		# default timezone
-		lbl = QLabel(tr('<a href="http://upload.wikimedia.org/wikipedia/en/e/e7/Timezones2008.png">Timezone</a>'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('<a href="http://upload.wikimedia.org/wikipedia/en/e/e7/Timezones2008.png">Timezone</a>'))
 		lbl.setToolTip(tr('Standard timezone (for local mean time)'))
 		lbl.setOpenExternalLinks(True)
 		dftChartGrid.addWidget(lbl, 3, 0)
@@ -124,15 +129,15 @@ class CfgDialog(QDialog):
 		self.timezoneEdit.setEditable(False)
 		dftChartGrid.addWidget(self.timezoneEdit, 3, 1)
 		# latitude
-		dftChartGrid.addWidget(QLabel(tr('Latitude')), 4, 0)
+		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Latitude')), 4, 0)
 		self.latitudeEdit = LatitudeEdit(cfg.dft_latitude, self)
 		dftChartGrid.addLayout(self.latitudeEdit, 4, 1)
 		# longitude
-		dftChartGrid.addWidget(QLabel(tr('Longitude')), 5, 0)
+		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Longitude')), 5, 0)
 		self.longitudeEdit = LongitudeEdit(cfg.dft_longitude, self)
 		dftChartGrid.addLayout(self.longitudeEdit, 5, 1)
 		# altitude
-		dftChartGrid.addWidget(QLabel(tr('Altitude')), 6, 0)
+		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Altitude')), 6, 0)
 		geoLayout = QHBoxLayout() # geo layout
 		dftChartGrid.addLayout(geoLayout, 6, 1)
 		self.altitudeEdit = AltitudeEdit(cfg.dft_altitude, self)
@@ -145,7 +150,7 @@ class CfgDialog(QDialog):
 		self.connect(geoButton, SIGNAL('clicked()'), self.queryGeoNames)
 		geoLayout.addWidget(geoButton)
 		# filter
-		dftChartGrid.addWidget(QLabel(tr('Filter')), 7, 0)
+		dftChartGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter')), 7, 0)
 		filtLayout = QHBoxLayout()
 		self.filterEdit = QComboBox(self)
 		self.filterEdit.addItems(all_filters_names())
@@ -162,7 +167,7 @@ class CfgDialog(QDialog):
 		# ### mercurial settings ###
 		hgWidget = QWidget()
 		tabs.addTab(hgWidget, tr('Mercurial'))
-		hgGrid = QGridLayout()
+		hgGrid = PyQt5.QtWidgets.QGridLayout()
 		hgWidget.setLayout(hgGrid)
 		# use hg
 		self.useHgBox = QCheckBox(tr('Use Mercurial'), self)
@@ -170,30 +175,30 @@ class CfgDialog(QDialog):
 			tr('Pull changes on startup and push changes on shutdown'))
 		hgGrid.addWidget(self.useHgBox, 0, 0, 1, 2)
 		# hg repo
-		lbl = QLabel(tr('Hg repo'))
+		lbl = PyQt5.QtWidgets.QLabel(tr('Hg repo'))
 		lbl.setToolTip(tr('Distant repository address'))
 		hgGrid.addWidget(lbl, 1, 0)
 		self.hgRepoEdit = QLineEdit(self)
 		hgGrid.addWidget(self.hgRepoEdit, 1, 1)
 		# hg user
-		hgGrid.addWidget(QLabel(tr('Username')), 2, 0)
+		hgGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Username')), 2, 0)
 		self.hgUserEdit = QLineEdit(self)
 		hgGrid.addWidget(self.hgUserEdit, 2, 1)
 		# hg pswd
-		hgGrid.addWidget(QLabel(tr('Password')), 3, 0)
+		hgGrid.addWidget(PyQt5.QtWidgets.QLabel(tr('Password')), 3, 0)
 		self.hgPswdEdit = QLineEdit(self)
 		self.hgPswdEdit.setEchoMode(QLineEdit.Password)
 		hgGrid.addWidget(self.hgPswdEdit, 3, 1)
 		
 		# ### buttons ###
 		buttonsLayout = QHBoxLayout()
-		resetButton = QPushButton(tr('Reset'), self)
+		resetButton = PyQt5.QtWidgets.QPushButton(tr('Reset'), self)
 		self.connect(resetButton, SIGNAL('clicked()'), self.reset)
 		buttonsLayout.addWidget(resetButton)
-		cancelButton = QPushButton(tr('Cancel'), self)
+		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
 		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
 		buttonsLayout.addWidget(cancelButton)
-		okButton = QPushButton(tr('Ok'), self)
+		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
 		self.connect(okButton, SIGNAL('clicked()'), self.accept)
 		buttonsLayout.addWidget(okButton)
@@ -345,12 +350,12 @@ class CfgDialog(QDialog):
 		# save settings
 		cfg.save()
 		# done
-		self.done(QDialog.Accepted)
+		self.done(PyQt5.QtWidgets.QDialog.Accepted)
 
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = CfgDialog()
 	main.show()
 	sys.exit(app.exec_())

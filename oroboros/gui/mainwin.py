@@ -9,8 +9,8 @@ Main window.
 import sys
 import os.path
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 
 import oroboros
 from oroboros.core import cfg
@@ -43,6 +43,7 @@ from oroboros.gui.orbfiltersmandialog import OrbsFiltersManagerDialog
 from oroboros.gui.asprestrmandialog import AspectsRestrictionsManagerDialog
 from oroboros.gui.orbrestrmandialog import OrbsRestrictionsManagerDialog
 from oroboros.gui.midpfiltersmandialog import MidPointsFiltersManagerDialog
+import PyQt5
 
 
 __all__ = ['MainWindow', 'main']
@@ -52,10 +53,10 @@ _baseDir = os.path.dirname(os.path.abspath(__file__))
 _iconsDir = os.path.join(_baseDir, 'icons')
 
 
-class MainWindow(QMainWindow):
+class MainWindow(PyQt5.QtWidgets.QMainWindow):
 	
 	def __init__(self):
-		QMainWindow.__init__(self)
+		PyQt5.QtWidgets.QMainWindow.__init__(self)
 		tr = self.tr
 		# create main window
 		self.resize(900, 650)
@@ -110,10 +111,10 @@ class MainWindow(QMainWindow):
 	# ### about actions events ####
 	
 	def aboutQtEvent(self):
-		QMessageBox.aboutQt(self, self.tr('About Qt'))
+		PyQt5.QtWidgets.QMessageBox.aboutQt(self, self.tr('About Qt'))
 	
 	def aboutOroborosEvent(self):
-		msg = unicode(self.tr("""<qt>This is <b><i>Oroboros</i></b> astrology software (version %(version)s).<br><br>
+		msg =   str(self.tr("""<qt>This is <b><i>Oroboros</i></b> astrology software (version %(version)s).<br><br>
 
 Copyright &copy; 2008 Stanislas Marquis <a href="mailto:stnsls@gmail.com">stnsls@gmail.com</a><br>
 Homepage <a href="http://pypi.python.org/pypi/oroboros">http://pypi.python.org/pypi/oroboros</a><br><br>
@@ -121,7 +122,7 @@ Homepage <a href="http://pypi.python.org/pypi/oroboros">http://pypi.python.org/p
 This is free software; see the license for copying conditions.<br>
 There is NO warranty; not even for MERCHANTABILITY or<br>
 FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
-		QMessageBox.about(self, self.tr('About Oroboros'), msg)
+		PyQt5.QtWidgets.QMessageBox.about(self, self.tr('About Oroboros'), msg)
 	
 	# ### file actions events ###
 	
@@ -262,7 +263,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
 			else:
 				return
 		cht.write()
-		QMessageBox.information(self, tr('Save Chart 1'),
+		PyQt5.QtWidgets.QMessageBox.information(self, tr('Save Chart 1'),
 			unicode(
 				tr('Successfully saved chart \xab %(chart)s \xbb\nwith path \xab %(path)s \xbb')) % {
 					'chart': cht._name, 'path': cht._path})
@@ -282,7 +283,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
 			else:
 				return
 		cht.write()
-		QMessageBox.information(self, tr('Save Chart 2'),
+		PyQt5.QtWidgets.QMessageBox.information(self, tr('Save Chart 2'),
 			unicode(
 				tr('Successfully saved chart \xab %(chart)s \xbb\nwith path \xab %(path)s \xbb')) % {
 					'chart': cht._name, 'path': cht._path})
@@ -299,7 +300,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
 				path = '%s%s' % (path, '.xml')
 			cht.path = path
 			cht.write()
-			QMessageBox.information(self, tr('Save Chart 1 as...'),
+			PyQt5.QtWidgets.QMessageBox.information(self, tr('Save Chart 1 as...'),
 				unicode(
 					tr('Successfully saved chart \xab %(chart)s \xbb\nwith path %(path)s')) % {
 						'path': cht._name, 'path': cht._path})
@@ -316,7 +317,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
 				path = '%s%s' % (path, '.xml')
 			cht.path = path
 			cht.write()
-			QMessageBox.information(self, tr('Save Chart 2 As...'),
+			PyQt5.QtWidgets.QMessageBox.information(self, tr('Save Chart 2 As...'),
 				unicode(
 					tr('Successfully saved chart \xab %(chart)s \xbb\nwith path %(path)s')) % {
 						'path': cht._name, 'path': cht._path})
@@ -367,7 +368,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
 	def multiplyPosEvent(self):
 		idx = self.central.currentIndex()
 		ok, value, mode, unit, dt = HarmonicsDialog(self).exec_()
-		if ok != QDialog.Accepted:
+		if ok != PyQt5.QtWidgets.QDialog.Accepted:
 			return
 		# get non-hidden chart
 		try:
@@ -386,7 +387,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</qt>""")) % {'version': oroboros.__version__}
 	def addPosEvent(self):
 		idx = self.central.currentIndex()
 		ok, value, mode, unit, dt = ProfectionDialog(self).exec_()
-		if ok != QDialog.Accepted:
+		if ok != PyQt5.QtWidgets.QDialog.Accepted:
 			return
 		# get non-hidden chart
 		try:
@@ -448,7 +449,7 @@ def main():
 		except:
 			print('oroboros: unable to pull from hg repo.')
 	# start
-	qtApp = QApplication(sys.argv)
+	qtApp = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = MainWindow()
 	app.mainwin = main # set mainwin
 	translations.load(cfg.language, qtApp)

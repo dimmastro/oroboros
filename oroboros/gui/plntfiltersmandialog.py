@@ -8,27 +8,28 @@ Planets filters manager.
 
 import sys
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
 
 from oroboros.core.planetsfilters import PlanetsFilter, all_planets_filters_names
 from oroboros.gui.plntfilterdialog import PlanetsFilterDialog
-
+import PyQt5
 
 __all__ = ['PlanetsFiltersManagerDialog']
 
 
 
-class PlanetsFiltersManagerDialog(QDialog):
+class PlanetsFiltersManagerDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		self.setWindowTitle(tr('Planets Filters Manager'))
 		self.setSizeGripEnabled(True)
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# list of filters
 		self.filtersBox = QComboBox(self)
@@ -38,16 +39,16 @@ class PlanetsFiltersManagerDialog(QDialog):
 		# buttons
 		buttonsLayout = QHBoxLayout()
 		grid.addLayout(buttonsLayout, 1, 0)
-		newButton = QPushButton(tr('New'), self)
+		newButton = PyQt5.QtWidgets.QPushButton(tr('New'), self)
 		self.connect(newButton, SIGNAL('clicked()'), self.newFilterEvent)
 		buttonsLayout.addWidget(newButton)
-		editButton = QPushButton(tr('Edit'), self)
+		editButton = PyQt5.QtWidgets.QPushButton(tr('Edit'), self)
 		self.connect(editButton, SIGNAL('clicked()'), self.editFilterEvent)
 		buttonsLayout.addWidget(editButton)
-		deleteButton = QPushButton(tr('Delete'), self)
+		deleteButton = PyQt5.QtWidgets.QPushButton(tr('Delete'), self)
 		self.connect(deleteButton, SIGNAL('clicked()'), self.deleteFilterEvent)
 		buttonsLayout.addWidget(deleteButton)
-		closeButton = QPushButton(tr('Close'), self)
+		closeButton = PyQt5.QtWidgets.QPushButton(tr('Close'), self)
 		closeButton.setDefault(True)
 		self.connect(closeButton, SIGNAL('clicked()'), SLOT('close()'))
 		buttonsLayout.addWidget(closeButton)
@@ -69,16 +70,16 @@ class PlanetsFiltersManagerDialog(QDialog):
 	def deleteFilterEvent(self):
 		tr = self.tr
 		name = all_planets_filters_names()[self.filtersBox.currentIndex()]
-		ret = QMessageBox.warning(self, tr('Delete Planets Filter'),
-			unicode(tr('Are you sure you want to delete planets filter \xab %(filter)s \xbb ?')) % {
+		ret = PyQt5.QtWidgets.QMessageBox.warning(self, tr('Delete Planets Filter'),
+			str(tr('Are you sure you want to delete planets filter \xab %(filter)s \xbb ?')) % {
 				'filter': name},
-			QMessageBox.Cancel|QMessageBox.Yes, QMessageBox.Yes)
-		if ret == QMessageBox.Yes:
+			PyQt5.QtWidgets.QMessageBox.Cancel|PyQt5.QtWidgets.QMessageBox.Yes, PyQt5.QtWidgets.QMessageBox.Yes)
+		if ret == PyQt5.QtWidgets.QMessageBox.Yes:
 			filt = PlanetsFilter(name)
 			try:
 				filt.delete()
 			except ValueError: # cannot delete default filter
-				QMessageBox.critical(self, tr('Required Planets Filter'),
+				PyQt5.QtWidgets.QMessageBox.critical(self, tr('Required Planets Filter'),
 					tr('Cannot delete required filter.'))
 			self.reset()
 	
@@ -90,7 +91,7 @@ class PlanetsFiltersManagerDialog(QDialog):
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = PlanetsFiltersManagerDialog()
 	main.show()
 	sys.exit(app.exec_())

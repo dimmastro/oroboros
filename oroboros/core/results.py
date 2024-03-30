@@ -78,6 +78,9 @@ class Data(object):
 		:type res: sequence or numeric
 		"""
 		if isinstance(res, (tuple, list)):
+			# print (res)
+			# print (res[:3])
+			res = res[0]
 			self._longitude, self._latitude, self._distance = res[:3]
 			self._lonspeed, self._latspeed, self._distspeed = res[3:]
 		else:

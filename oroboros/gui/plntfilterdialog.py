@@ -9,8 +9,11 @@ New/edit planets filters.
 import sys
 import os.path
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QTabWidget
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QHBoxLayout
 
 from oroboros.core import cfg
 from oroboros.core import db
@@ -18,6 +21,7 @@ from oroboros.core.planetsfilters import PlanetsFilter
 
 from oroboros.gui import app
 from oroboros.gui import names
+import PyQt5
 
 
 __all__ = ['PlanetsFilterDialog']
@@ -27,15 +31,15 @@ _baseDir = os.path.dirname(os.path.abspath(__file__))
 
 
 
-class PlanetsFilterDialog(QDialog):
+class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None, filt=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		if isinstance(filt, PlanetsFilter):
 			self._filt = filt
-			title = unicode(tr('Edit Planets Filter \xab %(filter)s \xbb')) % {
+			title = str(tr('Edit Planets Filter \xab %(filter)s \xbb')) % {
 				'filter': filt._name}
 		else:
 			self._filt = PlanetsFilter(cfg.dft_filter._planets._idx_)
@@ -47,10 +51,10 @@ class PlanetsFilterDialog(QDialog):
 		self.setMinimumHeight(350)
 		self.setSizeGripEnabled(True)
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# filter name
-		grid.addWidget(QLabel(tr('Filter name')), 0, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Filter name')), 0, 0)
 		self.nameEdit = QLineEdit(self)
 		grid.addWidget(self.nameEdit, 0, 1)
 		# tab widget
@@ -61,7 +65,7 @@ class PlanetsFilterDialog(QDialog):
 		# ### main planets ###
 		mainWidget = QWidget()
 		tabs.addTab(mainWidget, tr('Main', 'Main planets'))
-		mainGrid = QGridLayout()
+		mainGrid = PyQt5.QtWidgets.QGridLayout()
 		mainWidget.setLayout(mainGrid)
 		# sun
 		self._cb['Sun'] = QCheckBox(names.planets['Sun'], self)
@@ -142,7 +146,7 @@ class PlanetsFilterDialog(QDialog):
 		# ### uranians ###
 		uranianWidget = QWidget()
 		tabs.addTab(uranianWidget, tr('Uranians'))
-		uranianGrid = QGridLayout()
+		uranianGrid = PyQt5.QtWidgets.QGridLayout()
 		uranianWidget.setLayout(uranianGrid)
 		# cupido
 		self._cb['Cupido'] = QCheckBox(names.planets['Cupido'], self)
@@ -172,7 +176,7 @@ class PlanetsFilterDialog(QDialog):
 		# ### others fictitious ###
 		othersWidget = QWidget()
 		tabs.addTab(othersWidget, tr('Others'))
-		othersGrid = QGridLayout()
+		othersGrid = PyQt5.QtWidgets.QGridLayout()
 		othersWidget.setLayout(othersGrid)
 		# isis
 		self._cb['Isis'] = QCheckBox(names.planets['Isis'], self)
@@ -211,7 +215,7 @@ class PlanetsFilterDialog(QDialog):
 		# ### cusps ###
 		cuspsWidget = QWidget()
 		tabs.addTab(cuspsWidget, tr('Cusps'))
-		cuspsGrid = QGridLayout()
+		cuspsGrid = PyQt5.QtWidgets.QGridLayout()
 		cuspsWidget.setLayout(cuspsGrid)
 		# house cusps
 		x = (0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2)
@@ -254,7 +258,7 @@ class PlanetsFilterDialog(QDialog):
 		# ### gauquelin ###
 		gauquelinWidget = QWidget()
 		tabs.addTab(gauquelinWidget, tr('Gauquelin'))
-		gauquelinGrid = QGridLayout()
+		gauquelinGrid = PyQt5.QtWidgets.QGridLayout()
 		gauquelinWidget.setLayout(gauquelinGrid)
 		# sectors
 		x = (0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5)
@@ -267,7 +271,7 @@ class PlanetsFilterDialog(QDialog):
 		# ### parts ###
 		partsWidget = QWidget()
 		tabs.addTab(partsWidget, tr('Parts'))
-		partsGrid = QGridLayout()
+		partsGrid = PyQt5.QtWidgets.QGridLayout()
 		partsWidget.setLayout(partsGrid)
 		# part of fortune (rudhyar)
 		self._cb['Part of Fortune (Rudhyar)'] = QCheckBox(
@@ -284,7 +288,7 @@ class PlanetsFilterDialog(QDialog):
 		starsWidget = QWidget()
 		starsScroll.setWidget(starsWidget)
 		tabs.addTab(starsScroll, tr('Stars'))
-		starsGrid = QGridLayout()
+		starsGrid = PyQt5.QtWidgets.QGridLayout()
 		starsWidget.setLayout(starsGrid)
 		y = 0
 		for i, star in enumerate(res):
@@ -304,7 +308,7 @@ class PlanetsFilterDialog(QDialog):
 		asteroidsWidget = QWidget()
 		asteroidsScroll.setWidget(asteroidsWidget)
 		tabs.addTab(asteroidsScroll, tr('Asteroids'))
-		asteroidsGrid = QGridLayout()
+		asteroidsGrid = PyQt5.QtWidgets.QGridLayout()
 		asteroidsWidget.setLayout(asteroidsGrid)
 		y = 0
 		for i, ast in enumerate(res):
@@ -317,18 +321,18 @@ class PlanetsFilterDialog(QDialog):
 		# ### end planets ###
 		
 		# comment
-		grid.addWidget(QLabel(tr('Comment')), 2, 0, Qt.AlignTop)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 2, 0, Qt.AlignTop)
 		self.commentEdit = QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 2, 1)
 		# buttons
 		buttonsLayout = QHBoxLayout()
-		resetButton = QPushButton(tr('Reset'), self)
+		resetButton = PyQt5.QtWidgets.QPushButton(tr('Reset'), self)
 		self.connect(resetButton, SIGNAL('clicked()'), self.reset)
 		buttonsLayout.addWidget(resetButton)
-		cancelButton = QPushButton(tr('Cancel'), self)
+		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
 		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
 		buttonsLayout.addWidget(cancelButton)
-		okButton = QPushButton(tr('Ok'), self)
+		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
 		self.connect(okButton, SIGNAL('clicked()'), self.accept)
 		buttonsLayout.addWidget(okButton)
@@ -354,7 +358,7 @@ class PlanetsFilterDialog(QDialog):
 		# name
 		name = unicode(self.nameEdit.text())
 		if name == '':
-			QMessageBox.critical(self, tr('Missing Name'),
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Missing Name'),
 				tr('Please set filter name.'))
 			self.nameEdit.setFocus()
 			return
@@ -368,8 +372,8 @@ class PlanetsFilterDialog(QDialog):
 		try:
 			self._filt.save()
 		except ValueError: # duplicate filter
-			QMessageBox.critical(self, tr('Error'),
-				unicode(tr('Duplicate filter name \xab %(filter)s \xbb.')) % {
+			PyQt5.QtWidgets.QMessageBox.critical(self, tr('Error'),
+				str(tr('Duplicate filter name \xab %(filter)s \xbb.')) % {
 					'filter': self._filt._name})
 			self.nameEdit.setFocus()
 			return
@@ -378,12 +382,12 @@ class PlanetsFilterDialog(QDialog):
 		if __name__ != '__main__':
 			app.planetsFilterUpdatedEvent(self._filt._idx_)
 		# done
-		self.done(QDialog.Accepted)
+		self.done(PyQt5.QtWidgets.QDialog.Accepted)
 
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = PlanetsFilterDialog()
 	main.show()
 	sys.exit(app.exec_())

@@ -41,7 +41,7 @@ Get your config values:
 import os.path
 import shutil
 import stat
-import ConfigParser
+import configparser
 
 
 __all__ = ['read', 'exists', 'create', 'sqlite']
@@ -112,19 +112,19 @@ def read(path=_path, force=False):
 		if exists == True:
 			return True
 	# try to read user's config
-	ini = ConfigParser.SafeConfigParser()
+	ini = configparser.SafeConfigParser()
 	c = ini.read(os.path.expanduser(path))
 	if len(c) != 0:
 		return _set_globals(ini)
 	# try to read system config
 	global _sysconf
-	ini = ConfigParser.SafeConfigParser()
+	ini = configparser.SafeConfigParser()
 	c = ini.read(_sysconf)
 	if len(c) != 0:
 		return _set_globals(ini)
 	# try to read current dir config
 	global _baseconf
-	ini = ConfigParser.SafeConfigParser()
+	ini = configparser.SafeConfigParser()
 	c = ini.read(_baseconf)
 	if len(c) != 0:
 		return _set_globals(ini)
@@ -137,7 +137,7 @@ def _set_globals(parser):
 	
 	By the way, sets the ``exists`` flag to True.
 	
-	:type parser: ConfigParser
+	:type parser: configparser
 	:rtype: bool
 	"""
 	global exists, sqlite

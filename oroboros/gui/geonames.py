@@ -6,8 +6,10 @@ GeoNames.org query interface.
 
 """
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
+import PyQt5
 
 from oroboros.core import geonames
 
@@ -15,10 +17,10 @@ from oroboros.core import geonames
 __all__ = ['GeoNamesQueryDialog']
 
 
-class GeoNamesQueryDialog(QDialog):
+class GeoNamesQueryDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		tr = self.tr
 		self._parent = parent
 		self.setWindowTitle(tr('Query GeoNames.org'))
@@ -27,29 +29,29 @@ class GeoNamesQueryDialog(QDialog):
 		self._results = list() # geonames results
 		self._sel = None # selected result
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# search
-		grid.addWidget(QLabel(tr('Search for')), 0, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Search for')), 0, 0)
 		self.nameQuery = QLineEdit(self)
 		grid.addWidget(self.nameQuery, 0, 1)
 		# results
-		grid.addWidget(QLabel(tr('Results')), 1, 0)
+		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Results')), 1, 0)
 		self.resultsBox = QComboBox(self)
 		self.resultsBox.setEditable(False)
 		grid.addWidget(self.resultsBox, 1, 1)
 		# buttons
 		buttonsLayout = QHBoxLayout()
 		grid.addLayout(buttonsLayout, 2, 0, 1, 2)
-		searchButton = QPushButton(tr('Search'), self)
+		searchButton = PyQt5.QtWidgets.QPushButton(tr('Search'), self)
 		searchButton.setDefault(True)
 		self.connect(searchButton, SIGNAL('clicked()'), self.searchEvent)
 		buttonsLayout.addWidget(searchButton)
-		self.selectButton = QPushButton(tr('Select'), self)
+		self.selectButton = PyQt5.QtWidgets.QPushButton(tr('Select'), self)
 		self.selectButton.setDisabled(True)
 		self.connect(self.selectButton, SIGNAL('clicked()'), self.selectEvent)
 		buttonsLayout.addWidget(self.selectButton)
-		closeButton = QPushButton(tr('Close'), self)
+		closeButton = PyQt5.QtWidgets.QPushButton(tr('Close'), self)
 		self.connect(closeButton, SIGNAL('clicked()'), SLOT('close()'))
 		buttonsLayout.addWidget(closeButton)
 	
@@ -94,11 +96,11 @@ class GeoNamesQueryDialog(QDialog):
 		try:
 			self._sel = self._results[self.resultsBox.currentIndex()]
 		except IndexError: # should not happen
-			self.done(QDialog.Rejected)
-		self.done(QDialog.Accepted)
+			self.done(PyQt5.QtWidgets.QDialog.Rejected)
+		self.done(PyQt5.QtWidgets.QDialog.Accepted)
 	
 	def exec_(self):
-		ok = QDialog.exec_(self)
+		ok = PyQt5.QtWidgets.QDialog.exec_(self)
 		if ok:
 			return ok, self._sel
 		else:
@@ -121,11 +123,11 @@ class SearchThread(QThread):
 			self.terminate()##self.emit(SIGNAL('terminated()'))
 
 
-class ProgressDialog(QDialog):
+class ProgressDialog(PyQt5.QtWidgets.QSpinBox):
 	"""Progress bar dialog."""
 	
 	def __init__(self, parent):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self.setWindowTitle(self.tr('Waiting...', 'Progress bar'))
 		layout = QHBoxLayout(self)
 		self.setLayout(layout)
@@ -137,7 +139,7 @@ class ProgressDialog(QDialog):
 
 def main():
 	import sys
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = GeoNamesQueryDialog()
 	main.show()
 	sys.exit(app.exec_())

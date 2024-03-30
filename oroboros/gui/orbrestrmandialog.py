@@ -8,27 +8,28 @@ Orbs restrictions manager.
 
 import sys
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
 
 from oroboros.core.orbsrestrictions import OrbsRestrictions, all_orbs_restrictions_names
 from oroboros.gui.orbrestrdialog import OrbsRestrictionsDialog
-
+import PyQt5
 
 __all__ = ['OrbsRestrictionsManagerDialog']
 
 
 
-class OrbsRestrictionsManagerDialog(QDialog):
+class OrbsRestrictionsManagerDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		self._parent = parent
 		tr = self.tr
 		self.setWindowTitle(tr('Orbs Restrictions Manager'))
 		self.setSizeGripEnabled(True)
 		# layout
-		grid = QGridLayout(self)
+		grid = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(grid)
 		# list of filters
 		self.filtersBox = QComboBox(self)
@@ -38,16 +39,16 @@ class OrbsRestrictionsManagerDialog(QDialog):
 		# buttons
 		buttonsLayout = QHBoxLayout()
 		grid.addLayout(buttonsLayout, 1, 0)
-		newButton = QPushButton(tr('New'), self)
+		newButton = PyQt5.QtWidgets.QPushButton(tr('New'), self)
 		self.connect(newButton, SIGNAL('clicked()'), self.newFilterEvent)
 		buttonsLayout.addWidget(newButton)
-		editButton = QPushButton(tr('Edit'), self)
+		editButton = PyQt5.QtWidgets.QPushButton(tr('Edit'), self)
 		self.connect(editButton, SIGNAL('clicked()'), self.editFilterEvent)
 		buttonsLayout.addWidget(editButton)
-		deleteButton = QPushButton(tr('Delete'), self)
+		deleteButton = PyQt5.QtWidgets.QPushButton(tr('Delete'), self)
 		self.connect(deleteButton, SIGNAL('clicked()'), self.deleteFilterEvent)
 		buttonsLayout.addWidget(deleteButton)
-		closeButton = QPushButton(tr('Close'), self)
+		closeButton = PyQt5.QtWidgets.QPushButton(tr('Close'), self)
 		closeButton.setDefault(True)
 		self.connect(closeButton, SIGNAL('clicked()'), SLOT('close()'))
 		buttonsLayout.addWidget(closeButton)
@@ -69,16 +70,16 @@ class OrbsRestrictionsManagerDialog(QDialog):
 	def deleteFilterEvent(self):
 		tr = self.tr
 		name = all_orbs_restrictions_names()[self.filtersBox.currentIndex()]
-		ret = QMessageBox.warning(self, tr('Delete Orbs Restrictions'),
-			unicode(tr('Are you sure you want to delete orbs restrictions \xab %(filter)s \xbb ?')) % {
+		ret = PyQt5.QtWidgets.QMessageBox.warning(self, tr('Delete Orbs Restrictions'),
+			str(tr('Are you sure you want to delete orbs restrictions \xab %(filter)s \xbb ?')) % {
 				'filter': name},
-			QMessageBox.Cancel|QMessageBox.Yes, QMessageBox.Yes)
-		if ret == QMessageBox.Yes:
+			PyQt5.QtWidgets.QMessageBox.Cancel|PyQt5.QtWidgets.QMessageBox.Yes, PyQt5.QtWidgets.QMessageBox.Yes)
+		if ret == PyQt5.QtWidgets.QMessageBox.Yes:
 			filt = OrbsRestrictions(name)
 			try:
 				filt.delete()
 			except ValueError: # cannot delete
-				QMessageBox.critical(self, tr('Required Orbs Restrictions'),
+				PyQt5.QtWidgets.QMessageBox.critical(self, tr('Required Orbs Restrictions'),
 					tr('Cannot delete required orbs restrictions.'))
 			self.reset()
 	
@@ -90,7 +91,7 @@ class OrbsRestrictionsManagerDialog(QDialog):
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = OrbsRestrictionsManagerDialog()
 	main.show()
 	sys.exit(app.exec_())

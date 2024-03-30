@@ -8,24 +8,25 @@ Profection dialog.
 
 import sys
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QHBoxLayout
+import PyQt5
 
 __all__ = ['ProfectionDialog']
 
 
-class ProfectionDialog(QDialog):
+class ProfectionDialog(PyQt5.QtWidgets.QDialog):
 	
 	def __init__(self, parent=None):
-		QDialog.__init__(self, parent)
+		PyQt5.QtWidgets.QDialog.__init__(self, parent)
 		tr = self.tr
 		self.setWindowTitle(tr('Add Degrees'))
-		layout = QGridLayout(self)
+		layout = PyQt5.QtWidgets.QGridLayout(self)
 		self.setLayout(layout)
 		# input value
-		layout.addWidget(QLabel(tr('Value')), 0, 0)
-		self.valueEdit = QDoubleSpinBox(self)
+		layout.addWidget(PyQt5.QtWidgets.QLabel(tr('Value')), 0, 0)
+		self.valueEdit = PyQt5.QtWidgets.QDoubleSpinBox(self)
 		self.valueEdit.setRange(-360, 360)
 		self.valueEdit.setSuffix(tr('\xb0', 'Degrees'))
 		self.valueEdit.setDecimals(6)
@@ -45,7 +46,7 @@ class ProfectionDialog(QDialog):
 		self.profUnit.addItems(units)
 		layout.addWidget(self.profUnit, 1, 1)
 		# datetime
-		layout.addWidget(QLabel(tr('DateTime')), 2, 0)
+		layout.addWidget(PyQt5.QtWidgets.QLabel(tr('DateTime')), 2, 0)
 		self.datetimeEdit = QDateTimeEdit(QDateTime.currentDateTime(), self)
 		self.datetimeEdit.setCalendarPopup(True)
 		self.datetimeEdit.setDisplayFormat(tr('yyyy-MM-dd hh:mm:ss',
@@ -58,10 +59,10 @@ class ProfectionDialog(QDialog):
 		# buttons
 		buttonsLayout = QHBoxLayout()
 		layout.addLayout(buttonsLayout, 3, 0, 1, 2)
-		cancelButton = QPushButton(tr('Cancel'), self)
+		cancelButton = PyQt5.QtWidgets.QPushButton(tr('Cancel'), self)
 		self.connect(cancelButton, SIGNAL('clicked()'), self.reject)
 		buttonsLayout.addWidget(cancelButton)
-		okButton = QPushButton(tr('Ok'), self)
+		okButton = PyQt5.QtWidgets.QPushButton(tr('Ok'), self)
 		okButton.setDefault(True)
 		self.connect(okButton, SIGNAL('clicked()'), self.accept)
 		buttonsLayout.addWidget(okButton)
@@ -77,18 +78,18 @@ class ProfectionDialog(QDialog):
 	
 	def exec_(self):
 		"""Return ok, value, profection, profection unit, datetime."""
-		ok = QDialog.exec_(self)
+		ok = PyQt5.QtWidgets.QDialog.exec_(self)
 		if ok:
-			ret = (QDialog.Accepted, self.valueEdit.value(),
+			ret = (PyQt5.QtWidgets.QDialog.Accepted, self.valueEdit.value(),
 				self.profMode.isChecked(), self.profUnit.currentIndex(),
 				self.datetimeEdit.dateTime().toPyDateTime())
 			return ret
 		else:
-			return QDialog.Rejected, 0, False, -1, 0
+			return PyQt5.QtWidgets.QDialog.Rejected, 0, False, -1, 0
 
 
 def main():
-	app = QApplication(sys.argv)
+	app = PyQt5.QtWidgets.QApplication(sys.argv)
 	main = ProfectionDialog()
 	main.show()
 	sys.exit(app.exec_())

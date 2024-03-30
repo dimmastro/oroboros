@@ -13,7 +13,7 @@ Requirements:
 
   - `pyswisseph <http://pyswisseph.atarax.org>`_
   - `pytz <http://pytz.sourceforge.net>`_
-  - `PyQt4 <http://www.riverbankcomputing.co.uk/pyqt>`_
+  - `PyQt5 <http://www.riverbankcomputing.co.uk/pyqt>`_
 
 Optionally;
 
