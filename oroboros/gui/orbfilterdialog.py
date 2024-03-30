@@ -100,7 +100,7 @@ class OrbsFilterDialog(PyQt5.QtWidgets.QDialog):
 		
 		# comment
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 2, 0, Qt.AlignTop)
-		self.commentEdit = QTextEdit('', self)
+		self.commentEdit = PyQt5.QtWidgets.QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 2, 1)
 		# buttons
 		buttonsLayout = QHBoxLayout()

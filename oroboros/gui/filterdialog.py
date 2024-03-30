@@ -152,7 +152,7 @@ class FilterDialog(PyQt5.QtWidgets.QDialog):
 		grid.addWidget(self.xcentricEdit, 9, 1)
 		# comment
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 10, 0, Qt.AlignTop)
-		self.commentEdit = QTextEdit('', self)
+		self.commentEdit = PyQt5.QtWidgets.QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 10, 1)
 		
 		# ### filters settings ###

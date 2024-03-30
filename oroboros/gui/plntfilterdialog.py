@@ -283,7 +283,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		sql = 'select name from Planets where family = 2 order by name;'
 		res = db.execute(sql).fetchall()
 		# stars tab
-		starsScroll = QScrollArea()
+		starsScroll = PyQt5.QtWidgets.QScrollArea()
 		starsScroll.setWidgetResizable(True)
 		starsWidget = QWidget()
 		starsScroll.setWidget(starsWidget)
@@ -303,7 +303,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		sql = 'select name from Planets where family = 3 order by name;'
 		res = db.execute(sql).fetchall()
 		# asteroids tab
-		asteroidsScroll = QScrollArea()
+		asteroidsScroll = PyQt5.QtWidgets.QScrollArea()
 		asteroidsScroll.setWidgetResizable(True)
 		asteroidsWidget = QWidget()
 		asteroidsScroll.setWidget(asteroidsWidget)
@@ -322,7 +322,7 @@ class PlanetsFilterDialog(PyQt5.QtWidgets.QDialog):
 		
 		# comment
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 2, 0, Qt.AlignTop)
-		self.commentEdit = QTextEdit('', self)
+		self.commentEdit = PyQt5.QtWidgets.QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 2, 1)
 		# buttons
 		buttonsLayout = QHBoxLayout()

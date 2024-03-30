@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QTabWidget
 from PyQt5.QtWidgets import QDockWidget
 from PyQt5.QtWidgets import QTabWidget
 from PyQt5.QtWidgets import QToolBox
+import PyQt5
 
 
 
@@ -116,31 +117,31 @@ class ChartInfoToolBox(QToolBox):
 		self._num = num
 		tr = self.tr
 		# chart data
-		scroll1 = QScrollArea(self)
+		scroll1 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll1.setWidgetResizable(True)
 		self.addItem(scroll1, tr('Data'))
-		self.textEdit1 = QTextEdit(self)
+		self.textEdit1 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit1.setReadOnly(True)
 		scroll1.setWidget(self.textEdit1)
 		# chart planets
-		scroll2 = QScrollArea(self)
+		scroll2 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll2.setWidgetResizable(True)
 		self.addItem(scroll2, tr('Planets'))
-		self.textEdit2 = QTextEdit(self)
+		self.textEdit2 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit2.setReadOnly(True)
 		scroll2.setWidget(self.textEdit2)
 		# chart houses
-		scroll3 = QScrollArea(self)
+		scroll3 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll3.setWidgetResizable(True)
 		self.addItem(scroll3, tr('Cusps'))
-		self.textEdit3 = QTextEdit(self)
+		self.textEdit3 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit3.setReadOnly(True)
 		scroll3.setWidget(self.textEdit3)
 		# chart aspects
-		scroll4 = QScrollArea(self)
+		scroll4 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll4.setWidgetResizable(True)
 		self.addItem(scroll4, tr('Aspects'))
-		self.textEdit4 = QTextEdit(self)
+		self.textEdit4 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit4.setReadOnly(True)
 		scroll4.setWidget(self.textEdit4)
 		# chart midpoints
@@ -153,10 +154,10 @@ class ChartInfoToolBox(QToolBox):
 		self.reset()
 	
 	def createMidPointsTab(self):
-		scroll = QScrollArea(self)
+		scroll = PyQt5.QtWidgets.QScrollArea(self)
 		scroll.setWidgetResizable(True)
 		self.insertItem(4, scroll, self.tr('MidPoints'))
-		self.textEdit5 = QTextEdit(self)
+		self.textEdit5 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit5.setReadOnly(True)
 		scroll.setWidget(self.textEdit5)
 		self.has_midpoints = True
@@ -219,10 +220,10 @@ class CompareInfoToolBox(QToolBox):
 		self._idx = idx
 		tr = self.tr
 		# interaspects
-		scroll1 = QScrollArea(self)
+		scroll1 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll1.setWidgetResizable(True)
 		self.addItem(scroll1, tr('Inter Aspects'))
-		self.textEdit1 = QTextEdit(self)
+		self.textEdit1 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit1.setReadOnly(True)
 		scroll1.setWidget(self.textEdit1)
 		# aspects to midpoints 1
@@ -244,28 +245,28 @@ class CompareInfoToolBox(QToolBox):
 		self.reset()
 	
 	def createMidPoints1Tab(self):
-		scroll2 = QScrollArea(self)
+		scroll2 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll2.setWidgetResizable(True)
 		self.addItem(scroll2, self.tr('Aspects MidPoints 1'))
-		self.textEdit2 = QTextEdit(self)
+		self.textEdit2 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit2.setReadOnly(True)
 		scroll2.setWidget(self.textEdit2)
 		self.has_midp1 = True
 	
 	def createMidPoints2Tab(self):
-		scroll3 = QScrollArea(self)
+		scroll3 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll3.setWidgetResizable(True)
 		self.addItem(scroll3, self.tr('Aspects MidPoints 2'))
-		self.textEdit3 = QTextEdit(self)
+		self.textEdit3 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit3.setReadOnly(True)
 		scroll3.setWidget(self.textEdit3)
 		self.has_midp2 = 2 if self.has_midp1 else 1
 	
 	def createInterMidPointsTab(self):
-		scroll4 = QScrollArea(self)
+		scroll4 = PyQt5.QtWidgets.QScrollArea(self)
 		scroll4.setWidgetResizable(True)
 		self.addItem(scroll4, self.tr('Inter MidPoints'))
-		self.textEdit4 = QTextEdit(self)
+		self.textEdit4 = PyQt5.QtWidgets.QTextEdit(self)
 		self.textEdit4.setReadOnly(True)
 		scroll4.setWidget(self.textEdit4)
 		self.has_intermidp = True

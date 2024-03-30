@@ -158,13 +158,13 @@ class ChartInfoDialog(PyQt5.QtWidgets.QDialog):
 		lbl = PyQt5.QtWidgets.QLabel(tr('Comment'))
 		lbl.setToolTip(tr('Accepts reStructured Text'))
 		grid.addWidget(lbl, 12, 0, Qt.AlignTop)
-		self.commentEdit = QTextEdit('', self)
+		self.commentEdit = PyQt5.QtWidgets.QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 12, 1)
 		# keywords
 		lbl = PyQt5.QtWidgets.QLabel(tr('Keywords'))
 		lbl.setToolTip(tr('Line-separated "key: word" pairs'))
 		grid.addWidget(lbl, 13, 0, Qt.AlignTop)
-		self.keywordsEdit = QTextEdit('', self)
+		self.keywordsEdit = PyQt5.QtWidgets.QTextEdit('', self)
 		grid.addWidget(self.keywordsEdit, 13, 1)
 		# buttons
 		buttonsLayout = QHBoxLayout()

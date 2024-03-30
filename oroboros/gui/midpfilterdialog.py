@@ -129,7 +129,7 @@ class MidPointsFilterDialog(PyQt5.QtWidgets.QDialog):
 		grid.addLayout(mporLayout, 5, 1)
 		# comment
 		grid.addWidget(PyQt5.QtWidgets.QLabel(tr('Comment')), 6, 0, Qt.AlignTop)
-		self.commentEdit = QTextEdit('', self)
+		self.commentEdit = PyQt5.QtWidgets.QTextEdit('', self)
 		grid.addWidget(self.commentEdit, 6, 1)
 		
 		# ### buttons ###
