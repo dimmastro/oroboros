@@ -189,7 +189,7 @@ class Aspect(db.Object):
 			self._color = color
 		elif isinstance(color, (tuple, list)):
 			self._color = RGBColor(*color)
-		elif isinstance(color, basestring): # must be str in py3
+		elif isinstance(color, str): # must be str in py3
 			self._color = RGBColor(*color.split(','))
 		else:
 			raise TypeError('Invalid color %s.' % color)
@@ -296,7 +296,7 @@ class Aspect(db.Object):
 		"""
 		if isinstance(aspect, int):
 			return self._select_by_idx(aspect)
-		elif isinstance(aspect, basestring): # str in py3
+		elif isinstance(aspect, str): # str in py3
 			return self._select_by_name(aspect)
 		elif isinstance(aspect, PiAngle):
 			return self._select_by_angle(aspect)

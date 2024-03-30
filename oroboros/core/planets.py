@@ -296,7 +296,7 @@ class Planet(db.Object):
 		"""
 		if isinstance(planet, int):
 			return self._select_by_num(planet)
-		elif isinstance(planet, basestring): # str in py3
+		elif isinstance(planet, str): # str in py3
 			return self._select_by_name(planet)
 		raise TypeError('Invalid planet %s.' % planet)
 	

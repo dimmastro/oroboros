@@ -148,7 +148,7 @@ class AspectsFilter(db.Object):
 		"""
 		if isinstance(filt, int):
 			return self._select_by_idx(filt)
-		elif isinstance(filt, basestring):
+		elif isinstance(filt, str):
 			return self._select_by_name(filt)
 		raise TypeError('Invalid filter %s.' % filt)
 	

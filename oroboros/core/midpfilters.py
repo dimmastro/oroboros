@@ -214,7 +214,7 @@ class MidPointsFilter(db.Object):
 		"""
 		if isinstance(filt, int):
 			return self._select_by_idx(filt)
-		elif isinstance(filt, basestring): ## not py3
+		elif isinstance(filt, str): ## not py3
 			return self._select_by_name(filt)
 		raise TypeError('Invalid filter %s.' % filt)
 	
